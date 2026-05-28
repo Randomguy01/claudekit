@@ -1,0 +1,10 @@
+{
+  "name": "claudekit",
+  "description": "Randomguy01's collection of claude plugins, skills, and subagents.",
+  "owner": {
+    "name": "Randomguy01"
+  },
+  "plugins": [
+
+  ]
+}
