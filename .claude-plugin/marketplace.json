@@ -5,6 +5,10 @@
     "name": "Randomguy01"
   },
   "plugins": [
-
+    {
+      "name": "android-jetpack-compose-material3",
+      "description": "Android Jetpack Compose Material 3 Documentation",
+      "source": "./plugins/android-jetpack-compose-material3"
+    }
   ]
 }
