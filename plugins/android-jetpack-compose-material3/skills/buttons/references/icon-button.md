@@ -1,5 +1,7 @@
 # API Reference
 
+> Last updated 2026-05-19 UTC
+
 ```kotlin
 @Composable
 fun IconButton(

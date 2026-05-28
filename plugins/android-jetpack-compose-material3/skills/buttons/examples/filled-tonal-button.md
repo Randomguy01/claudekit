@@ -1,4 +1,6 @@
-# Examples of Filled Tonal Button
+# Examples
+
+> Last updated 2026-05-06 UTC
 
 ```kotlin
 import androidx.compose.material3.Button

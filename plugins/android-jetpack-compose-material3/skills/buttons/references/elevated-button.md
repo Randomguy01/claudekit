@@ -1,5 +1,7 @@
 # API Reference
 
+> Last updated 2026-05-06 UTC
+
 ```kotlin
 @Composable
 fun ElevatedButton(

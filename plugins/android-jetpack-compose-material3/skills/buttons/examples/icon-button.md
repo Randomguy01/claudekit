@@ -1,3 +1,7 @@
+# Examples
+
+> Last updated 2026-05-19 UTC
+
 Simple Usage
 
 ```kotlin

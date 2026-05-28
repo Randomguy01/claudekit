@@ -1,5 +1,7 @@
 # API Reference
 
+> Last updated 2026-05-06 UTC
+
 ```kotlin
 @Composable
 fun Button(
@@ -58,3 +60,5 @@ fun Button(
 | `contentPadding: PaddingValues = ButtonDefaults.contentPaddingFor(ButtonDefaults.MinHeight)` | The spacing values to apply internally between the container and the content |
 | `interactionSource: MutableInteractionSource? = null` | An optional hoisted `MutableInteractionSource` for observing and emitting `Interaction`s for this button. You can use this to change the button's appearance or preview the button in different states. Note that if `null` is provided, interactions will still happen internally |
 | `content: @Composable RowScope.() -> Unit` | The content displayed on the button, expected to be text, icon or image |
+
+
