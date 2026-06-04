@@ -2,6 +2,25 @@
 
 > Last updated 2026-05-06 UTC
 
+# Material Design button
+
+Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.
+
+Filled buttons are high-emphasis buttons. Filled buttons have the most visual impact after the `FloatingActionButton`, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+
+Choose the best button for an action based on the amount of emphasis it needs. The more important an action is, the higher emphasis its button should be.
+
+See `OutlinedButton` for a medium-emphasis button with a border.
+See `ElevatedButton` for an `FilledTonalButton` with a shadow.
+See `TextButton` for a low-emphasis button with no border.
+See `FilledTonalButton` for a middle ground between `OutlinedButton` and `Button`.
+
+The default text style for internal `Text` components will be set to `Typography.labelLarge`.
+
+## Functions
+
+> Added in 1.0.0
+
 ```kotlin
 @Composable
 fun Button(
@@ -31,7 +50,6 @@ fun Button(
 | `interactionSource: MutableInteractionSource? = null` | An optional hoisted `MutableInteractionSource` for observing and emitting `Interaction`s for this button. You can use this to change the button's appearance or preview the button in different states. Note that if `null` is provided, interactions will still happen internally |
 | `content: @Composable RowScope.() -> Unit` | The content displayed on the button, expected to be text, icon or image |
 
-
 ```kotlin
 @Composable
 fun Button(
@@ -47,6 +65,8 @@ fun Button(
     content: @Composable RowScope.() -> Unit
 ): Unit
 ```
+
+It also morphs between the shapes provided in `shapes` depending on the state of the interaction with the button as long as the shapes provided our `CornerBasedShape`s. If a shape in `shapes` isn't a `CornerBasedShape`, then button will change between the `ButtonShapes` according to user interaction.
 
 | Parameter | Description |
 |-----------|-------------|

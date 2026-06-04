@@ -2,6 +2,25 @@
 
 > Last updated 2026-05-06 UTC
 
+# Material Design elevated button
+
+Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.
+
+Elevated buttons are high-emphasis buttons that are essentially `FilledTonalButtons` with a shadow. To prevent shadow creep, only use them when absolutely necessary, such as when the button requires visual separation from patterned container.
+
+Choose the best button for an action based on the amount of emphasis it needs. The more important an action is, the higher emphasis its button should be.
+
+See `Button` for a high-emphasis button without a shadow, also known as a filled button.
+See `FilledTonalButton` for a middle ground between `OutlinedButton` and `Button`.
+See `OutlinedButton` for a medium-emphasis button with a border.
+See `TextButton` for a low-emphasis button with no border.
+
+The default text style for internal `Text` components will be set to `Typography.labelLarge`.
+
+## Functions
+
+> Added in 1.0.0
+
 ```kotlin
 @Composable
 fun ElevatedButton(
@@ -46,6 +65,8 @@ fun ElevatedButton(
     content: @Composable RowScope.() -> Unit
 ): Unit
 ```
+
+It also morphs between the shapes provided in `shapes` depending on the state of the interaction with the button as long as the shapes provided our `CornerBasedShapes`. If a shape in `shapes` isn't a `CornerBasedShape`, then button will change between the `ButtonShapes` according to user interaction.
 
 | Parameter | Description |
 |-----------|-------------|

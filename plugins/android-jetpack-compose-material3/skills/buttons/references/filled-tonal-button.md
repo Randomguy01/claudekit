@@ -2,6 +2,25 @@
 
 > Last updated 2026-05-06 UTC
 
+# Material Design filled tonal button
+
+Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.
+
+Filled tonal buttons are medium-emphasis buttons that is an alternative middle ground between default `Button`s (filled) and `OutlinedButton`s. They can be used in contexts where lower-priority button requires slightly more emphasis than an outline would give, such as "Next" in an onboarding flow. Tonal buttons use the secondary color mapping.
+
+Choose the best button for an action based on the amount of emphasis it needs. The more important an action is, the higher emphasis its button should be.
+
+See `Button` for a high-emphasis button without a shadow, also known as a filled button.
+See `ElevatedButton` for a `FilledTonalButton` with a shadow.
+See `OutlinedButton` for a medium-emphasis button with a border.
+See `TextButton` for a low-emphasis button with no border.
+
+The default text style for internal `Text` components will be set to `Typography.labelLarge`.
+
+## Functions
+
+> Added in 1.0.0
+
 ```kotlin
 @Composable
 fun FilledTonalButton(
@@ -46,6 +65,8 @@ fun FilledTonalButton(
     content: @Composable RowScope.() -> Unit
 ): Unit
 ```
+
+It also morphs between the shapes provided in `shapes` depending on the state of the interaction with the button as long as the shapes provided our `CornerBasedShapes`. If a shape in `shapes` isn't a `CornerBasedShape`, then button will change between the `ButtonShapes` according to user interaction.
 
 | Parameter | Description |
 |-----------|-------------|

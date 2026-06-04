@@ -2,6 +2,16 @@
 
 > Last updated 2026-05-30 UTC
 
+# Material Design floating action button
+
+The FAB represents the most important action on a screen. It puts key actions within reach.
+
+FAB typically contains an icon, for a FAB with text and an icon, see `ExtendedFloatingActionButton`.
+
+## Functions
+
+> Added in 1.5.0-alpha21
+
 ```kotlin
 @Composable
 fun FloatingActionButton(
