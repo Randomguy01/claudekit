@@ -1,8 +1,10 @@
 # API Reference
 
-> Added in 2.0.0
+> Last updated 2026-06-04 UTC
 
 # Dao
+
+> Added in 2.0.0
 
 ```
 @Target(allowedTargets = [AnnotationTarget.CLASS])
