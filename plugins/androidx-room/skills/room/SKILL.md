@@ -19,7 +19,7 @@ To install or verify installation of Room follow the (installtion reference)[ref
 # Primary Components
 
 Three primary components:
-- (Database)[api/room-database.md]: Holds the database and serves as the main access point for the underlying database connection
+- (Database)[api/database.md]: Holds the database and serves as the main access point for the underlying database connection
 - (Entities)[api/entity.md]: Represent tables
 - (Data Access Objects (DAOs))[api/dao.md]: Interface to query, update, insert, and delete data
 
