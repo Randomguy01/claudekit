@@ -102,4 +102,4 @@ val onConflict: Int
 
 What to do if a conflict happens.
 
-Use [`OnConflictStrategy.ABORT`]() (default) to roll back the transaction on conflict. Use [`OnConflictStrategy.REPLACE`]() to replace the existing rows with the new rows. Use [`OnConflictStrategy.IGNORE`]() to keep the existing rows.
+Use [`OnConflictStrategy.ABORT`](on-conflict-strategy.md#abort) (default) to roll back the transaction on conflict. Use [`OnConflictStrategy.REPLACE`](on-conflict-strategy.md#replace) to replace the existing rows with the new rows. Use [`OnConflictStrategy.IGNORE`](on-conflict-strategy.md#ignore) to keep the existing rows.
