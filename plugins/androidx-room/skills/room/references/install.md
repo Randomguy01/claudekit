@@ -1,0 +1,24 @@
+# Installing room
+
+## Latest Version
+
+Run [latest.sh](scripts/latest.sh) to get the latest version
+
+## Dependencies (app-level)
+
+Required:
+- `androidx.room:room-runtime`
+- Kotlin Symbol Processing (KSP): `ksp("androidx.room:room-compiler")` — for projects with Kotlin source
+- Java annotation processor: `annotationProcessor("androidx.room:room-compiler")` — for Java-only projects
+
+Optional:
+- Kotlin Extensions & Coroutine Support: `androidx.room:room-ktx`
+- RxJava2 Support: `androidx.room:room-rxjava2`
+- RxJava3 Support: `androidx.room:room-rxjava3`
+- Guava Support (including Optional and ListenableFuture): `androidx.room:room-guava`
+- Test Helpers: `androidx.room:room-testing`
+- Paging 3 Integration: `androidx.room:room-paging`
+
+
+**Instructions**
+Install all required dependencies and determine if any optional dependencies are necessary

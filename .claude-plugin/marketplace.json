@@ -5,6 +5,10 @@
     "name": "Randomguy01"
   },
   "plugins": [
-
+    {
+      "name": "androidx-room",
+      "description": "Android Room Database Documentation",
+      "source": "./plugins/androidx-room"
+    }
   ]
 }
