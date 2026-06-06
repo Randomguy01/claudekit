@@ -19,6 +19,11 @@ Optional:
 - Test Helpers: `androidx.room:room-testing`
 - Paging 3 Integration: `androidx.room:room-paging`
 
+## Plugins (app-level)
+
+Optional:
+- `androidx.room`
+
 
 **Instructions**
-Install all required dependencies and determine if any optional dependencies are necessary
+Install all required dependencies and plugins and determine if any optional dependencies or plugins are necessary.
