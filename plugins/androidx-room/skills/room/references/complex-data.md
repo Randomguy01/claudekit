@@ -4,7 +4,7 @@ Room provides functionality for converting between primitive and boxed types but
 
 ## Use Type Converters
 
-To store custom data types in a single database column, provide a *type converter*. Type converters are methods that tell Room how to convert custom types to and from known types that Room can persist. You identify type converters by using the [`@TypeConverter`](../api/type-converter.md) annotation.
+To store custom data types in a single database column, provide a *type converter*. Type converters are methods that tell Room how to convert custom types to and from known types that Room can persist. You identify type converters by using the [`@TypeConverter`](../api/annotations/type-converter.md) annotation.
 
 **Room 2.3 and higher includes a default type converter for persisting enums. Existing type converters take precedence over the default**
 
@@ -26,7 +26,7 @@ class Converters {
 
 This example defines two type converter methods: one that converts a `Date` object to a `Long` object, and one that performs the inverse conversion from `Long` to `Date`. Because Room knows how to persist `Long` objects, it can use these converters to persist `Date` objects.
 
-Next, you add the [`@TypeConverters`](../api/type-converters.md) annotation to the `AppDatabase` class so that Room knows about the converter class that you have defined:
+Next, you add the [`@TypeConverters`](../api/annotations/type-converters.md) annotation to the `AppDatabase` class so that Room knows about the converter class that you have defined:
 
 ```kotlin
 @Database(entities = [User::class], version = 1)
@@ -53,7 +53,7 @@ In this example, Room can use the defined type converter everywhere because you 
 
 ### Control Type Converter Initialization
 
-Ordinarily, Room handles instantiation of type converters for you. However, sometimes you might need to pass additional dependencies to your type converter classes, which means that you need your app to directly control initialization of your type converters. In that case, annotate your converter class with [`@ProvidedTypeConverter`](../api/provided-type-converter.md):
+Ordinarily, Room handles instantiation of type converters for you. However, sometimes you might need to pass additional dependencies to your type converter classes, which means that you need your app to directly control initialization of your type converters. In that case, annotate your converter class with [`@ProvidedTypeConverter`](../api/annotations/provided-type-converter.md):
 
 ```kotlin
 @ProvidedTypeConverter
@@ -70,7 +70,7 @@ class ExampleConverter {
 }
 ```
 
-Then, in addition to declaring your converter class in `@TypeConverters`, use the [`RoomDatabase.Builder.addTypeConverter()`](../api/database.md) method to pass an instance of your converter class to the `RoomDatabase` builder:
+Then, in addition to declaring your converter class in `@TypeConverters`, use the [`RoomDatabase.Builder.addTypeConverter()`](../api/annotations/database.md) method to pass an instance of your converter class to the `RoomDatabase` builder:
 
 ```kotlin
 val db = Room.databaseBuilder(...)

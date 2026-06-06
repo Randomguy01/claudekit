@@ -25,7 +25,7 @@ The multimap return type approach requires your SQL queries to do more work, and
 
 ### Use the Intermediate Data Class Approach
 
-Define a data class that models the relationship between Room entities. This data class holds the pairings between instances of one entity and instances of another entity as [embedded objects](../api/embedded.md). The query methods then return instances of this data class for use in the app.
+Define a data class that models the relationship between Room entities. This data class holds the pairings between instances of one entity and instances of another entity as [embedded objects](../api/annotations/embedded.md). The query methods then return instances of this data class for use in the app.
 ```kotlin
 @Dao
 interface UserBookDao {
@@ -57,7 +57,7 @@ fun loadUserAndBookNames(): Map<User, List<Book>>
 
 ## Create Embedded Objects
 
-Use the [`@Embedded`](../api/embedded.md) annotation to represent an object decomposed into its subfields within a table.
+Use the [`@Embedded`](../api/annotations/embedded.md) annotation to represent an object decomposed into its subfields within a table.
 
 For example, your `User` class can include a field of type `Address` that represents a composition of fields named `street`, `city`, `state`, and `postCode`. To store the composed columns separately in the table, include an `Address` field. This should appear in the `User` class annotated with `@Embedded`. The following code snippet demonstrates this:
 

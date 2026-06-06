@@ -7,7 +7,7 @@ DAOs preserve separation of concerns, a critical architectural principle. DAOs m
 ## Defining a DAO
 
 - Define each DAO as either an interface (preferred) or an abstract class. 
-- You must annotate it with [`@Dao`](../api/dao.md).
+- You must annotate it with [`@Dao`](../api/annotations/dao.md).
 
 Example:
 ```kotlin
@@ -30,11 +30,11 @@ interface UserDao {
 
 ### Insert
 
-The [`@Insert`](../api/insert.md) annotation defines methods that insert their parameters into the table.
+The [`@Insert`](../api/annotations/insert.md) annotation defines methods that insert their parameters into the table.
 
-Each parameter for an `@Insert` method must be either an instance of an [entity](../api/entity.md) annotated with [`@Entity`](../api/entity.md) or a collection of data entity class instances. When an [`@Insert`](../api/insert.md) method is called, Room inserts each passed entity instance into the table.
+Each parameter for an `@Insert` method must be either an instance of an [entity](../api/annotations/entity.md) annotated with [`@Entity`](../api/annotations/entity.md) or a collection of data entity class instances. When an [`@Insert`](../api/annotations/insert.md) method is called, Room inserts each passed entity instance into the table.
 
-If the [`@Insert`](../api/insert.md) method receives a single parameter, it can return the `long` value `rowId` for the inserted item. If the parameter is an array or a collection, then it can return an array or a collection of `long` values instead. To learn more about returning `rowId` values, see the reference documentation for the [`@Insert`](../api/insert.md) annotation and the [SQLite documentation for rowid tables](https://www.sqlite.org/rowidtable.html).
+If the [`@Insert`](../api/annotations/insert.md) method receives a single parameter, it can return the `long` value `rowId` for the inserted item. If the parameter is an array or a collection, then it can return an array or a collection of `long` values instead. To learn more about returning `rowId` values, see the reference documentation for the [`@Insert`](../api/annotations/insert.md) annotation and the [SQLite documentation for rowid tables](https://www.sqlite.org/rowidtable.html).
 
 ```kotlin
 @Dao
@@ -52,11 +52,11 @@ interface UserDao {
 
 ### Update
 
-The [`@Update`](../api/update.md) annotation marks a method that updates specific rows in a database table. Like [`@Insert`](../api/insert.md) methods, [`@Update`](../api/update.md) methods accept data entity instances as parameters.
+The [`@Update`](../api/annotations/update.md) annotation marks a method that updates specific rows in a database table. Like [`@Insert`](../api/annotations/insert.md) methods, [`@Update`](../api/annotations/update.md) methods accept data entity instances as parameters.
 
-Room uses the [primary key](../api/primary-key.md) to match passed entity instances to rows in the database. If there is no row with the same primary key, Room makes no changes.
+Room uses the [primary key](../api/annotations/primary-key.md) to match passed entity instances to rows in the database. If there is no row with the same primary key, Room makes no changes.
 
-An [`@Update`](../api/update.md) method can optionally return an `int` value indicating the number of rows that were updated successfully.
+An [`@Update`](../api/annotations/update.md) method can optionally return an `int` value indicating the number of rows that were updated successfully.
 
 
 ```kotlin
@@ -69,11 +69,11 @@ interface UserDao {
 
 ### Delete
 
-The [`@Delete`](../api/delete.md) annotation lets you define methods that delete rows from a database table. Like [`@Insert`](../api/insert.md), [`@Delete`](../api/delete.md) accepts data entity instances as parameters.
+The [`@Delete`](../api/annotations/delete.md) annotation lets you define methods that delete rows from a database table. Like [`@Insert`](../api/annotations/insert.md), [`@Delete`](../api/annotations/delete.md) accepts data entity instances as parameters.
 
-Room uses the [primary key](../api/primary-key.md) to match passed entity instances to rows in the database. If there is no row with the same primary key, Room makes no changes.
+Room uses the [primary key](../api/annotations/primary-key.md) to match passed entity instances to rows in the database. If there is no row with the same primary key, Room makes no changes.
 
-A [`@Delete`](../api/delete.md) method can optionally return an `int` value indicating the number of rows that were deleted successfully.
+A [`@Delete`](../api/annotations/delete.md) method can optionally return an `int` value indicating the number of rows that were deleted successfully.
 
 ```kotlin
 @Dao
@@ -85,7 +85,7 @@ interface UserDao {
 
 ## Query Methods
 
-The [`@Query`](../api/query.md) annotation defines raw SQL statements and exposes them as DAO methods. Use these query methods to query data or when you need to perform more complex insertions, updates, and deletions.
+The [`@Query`](../api/annotations/query.md) annotation defines raw SQL statements and exposes them as DAO methods. Use these query methods to query data or when you need to perform more complex insertions, updates, and deletions.
 
 **Room validates SQL queries at compile time**
 

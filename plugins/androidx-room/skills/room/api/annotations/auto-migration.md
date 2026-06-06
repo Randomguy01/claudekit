@@ -14,11 +14,11 @@ annotation AutoMigration
 
 Declares an automatic migration on a Database.
 
-An automatic migration is a [`Migration`](migration.md) that is generated via the use of database schema files at two versions of a [`RoomDatabase`](room-database.md). Room automatically detects changes on the database between these two schemas, and constructs a [`Migration`](migration.md) to migrate between the two versions. In case of ambiguous scenarios (e.g. column/table rename/deletes), additional information is required, and can be provided via the [`AutoMigrationSpec`](auto-migration-spec.md) property.
+An automatic migration is a [`Migration`](../classes/migration.md) that is generated via the use of database schema files at two versions of a [`RoomDatabase`](../classes/room-database.md). Room automatically detects changes on the database between these two schemas, and constructs a [`Migration`](../classes/migration.md) to migrate between the two versions. In case of ambiguous scenarios (e.g. column/table rename/deletes), additional information is required, and can be provided via the [`AutoMigrationSpec`](../interfaces/auto-migration-spec.md) property.
 
-An auto migration must define the 'from' and 'to' versions of the schema for which a migration implementation will be generated. A class that implements AutoMigrationSpec can be declared in the [`AutoMigrationSpec`](auto-migration-spec.md) property to either provide more information for ambiguous scenarios or execute callbacks during the migration.
+An auto migration must define the 'from' and 'to' versions of the schema for which a migration implementation will be generated. A class that implements AutoMigrationSpec can be declared in the [`AutoMigrationSpec`](../interfaces/auto-migration-spec.md) property to either provide more information for ambiguous scenarios or execute callbacks during the migration.
 
-If there are any column/table renames/deletes between the two versions of the database provided then it is said that there are ambiguous scenarios in the migration. In such scenarios then an [`AutoMigrationSpec`](auto-migration-spec.md) is required and the class provided must be annotated with the relevant change annotation(s): [`RenameColumn`](rename-column.md), [`RenameTable`](rename-table.md), [`DeleteColumn`](delete-column.md) or [`DeleteTable`](delete-table.md). When no ambiguous scenario is present, then the [`AutoMigrationSpec`](auto-migration-spec.md) property is optional.
+If there are any column/table renames/deletes between the two versions of the database provided then it is said that there are ambiguous scenarios in the migration. In such scenarios then an [`AutoMigrationSpec`](../interfaces/auto-migration-spec.md) is required and the class provided must be annotated with the relevant change annotation(s): [`RenameColumn`](rename-column.md), [`RenameTable`](rename-table.md), [`DeleteColumn`](delete-column.md) or [`DeleteTable`](delete-table.md). When no ambiguous scenario is present, then the [`AutoMigrationSpec`](../interfaces/auto-migration-spec.md) property is optional.
 
 If an auto migration is defined for a database, then [`Database.exportSchema`](database.md#exportschema) must be set to true.
 
@@ -64,8 +64,8 @@ abstract class MusicDatabase  : RoomDatabase() {
 
 |        See also         |
 |-------------------------|
-| [`RoomDatabase`](room-database.md) |
-| [`AutoMigrationSpec`](auto-migration-spec.md) |
+| [`RoomDatabase`](../classes/room-database.md) |
+| [`AutoMigrationSpec`](../interfaces/auto-migration-spec.md) |
 
 ## Public Constructors
 

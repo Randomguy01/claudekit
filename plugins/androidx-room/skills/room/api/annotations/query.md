@@ -91,7 +91,7 @@ You can write:
 public abstract fun findSongDuration(songId: Int): SongDuration
 ```
 
-And Room will create the correct implementation to convert the query result into a `SongDuration` object. If there is a mismatch between the query result and the properties of the data class, and as long as there is at least 1 field match, Room prints a [`RoomWarnings.QUERY_MISMATCH`](room-warnings.md#query_mismatch) warning and sets as many properties as it can.
+And Room will create the correct implementation to convert the query result into a `SongDuration` object. If there is a mismatch between the query result and the properties of the data class, and as long as there is at least 1 field match, Room prints a [`RoomWarnings.QUERY_MISMATCH`](../classes/room-warnings.md#query_mismatch) warning and sets as many properties as it can.
 
 ## Public Constructors
 

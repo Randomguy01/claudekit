@@ -11,7 +11,7 @@ There are several tools and processes that you can use to debug a database.
 The Database Inspector allows you to inspect, query, and modify an app's databases while an app is running.
 
 Features:
-- Use gutter actions to quickly run queries from [DAO classes](../api/dao.md).
+- Use gutter actions to quickly run queries from [DAO classes](../api/annotations/dao.md).
 - Immediately see live updates in the Database Inspector when the running app makes changes to the data.
 
 ## Dump Data from the Command Line
