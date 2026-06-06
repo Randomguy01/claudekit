@@ -6,6 +6,7 @@
 
 > Added in 2.3.0
 
+**Android**
 ```
 @Target(allowedTargets = [AnnotationTarget.CLASS, AnnotationTarget.FUNCTION])
 @RequiresOptIn
