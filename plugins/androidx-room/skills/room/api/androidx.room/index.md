@@ -26,7 +26,7 @@ Similarly, if an [`Entity`](entity.md) extends another class, indices from the s
 
 | Type |
 |------|
-| `enum` [`Index.Order`](../enums/index-order.md) |
+| `enum` [`Index.Order`](index-order.md) |
 
 ## Public Constructors
 
@@ -63,7 +63,7 @@ List of column sort orders in the Index.
 
 The number of entries in the array should be equal to size of columns in [`value`](#value).
 
-The default order of all columns in the index is [`Index.Order.ASC`](../enums/index-order.md#asc).
+The default order of all columns in the index is [`Index.Order.ASC`](index-order.md#asc).
 
 Note that there is no value in providing a sort order on a single-column index. Column sort order of an index are relevant on multi-column indices and specifically in those that are considered 'covering indices', for such indices specifying an order can have performance improvements on queries containing ORDER BY clauses. See [SQLite documentation](https://www.sqlite.org/queryplanner.html#_sorting_by_index) for details on sorting by index and the usage of the sort order by the query optimizer.
 

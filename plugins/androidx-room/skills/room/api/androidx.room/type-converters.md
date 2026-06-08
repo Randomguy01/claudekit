@@ -48,7 +48,7 @@ TypeConverters(
 val builtInTypeConverters: BuiltInTypeConverters
 ```
 
-Configure whether Room can use various built in converters for common types. See [`BuiltInTypeConverters`](../classes/built-in-type-converters.md) for details.
+Configure whether Room can use various built in converters for common types. See [`BuiltInTypeConverters`](built-in-type-converters.md) for details.
 
 ### value
 
