@@ -2,7 +2,7 @@
 
 ## Latest Version
 
-Run [latest.sh](scripts/latest.sh) to get the latest version.
+Run [latest.sh](../scripts/latest.sh) to get the latest version.
 
 ## Dependencies (app-level)
 
