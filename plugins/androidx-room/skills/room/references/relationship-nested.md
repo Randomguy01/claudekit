@@ -2,9 +2,10 @@
 
 Define nested relationships when you need to query a set of three or more tables that are all related to each other.
 
-**Querying data with nested relationships requires Room to manipulate a large volume of data and can affect performance. Use as few nested relationships as possible in your queries**
+> [!CAUTION]
+> Querying data with nested relationships requires Room to manipulate a large volume of data and can affect performance. Use as few nested relationships as possible.
 
-Suppose you want to query all the users, all the playlists for each user, and all the songs in each playlist for each user. Users have a one-to-many relationship with playlists, and playlists have a many-to-many relationship with songs. The following code example shows the classes that represent these entities as well as the cross-reference table for the many-to-many relationship between playlists and songs:
+Suppose you want to query all the users, all the playlists for each user, and all the songs in each playlist for each user. Users have a [one-to-many relationship](relationship-one-to-many.md) with playlists, and playlists have a [many-to-many relationship](relationship-many-to-many.md) with songs. The following code example shows the classes that represent these entities as well as the cross-reference table for the many-to-many relationship between playlists and songs:
 
 ```kotlin
 @Entity
@@ -35,7 +36,7 @@ data class PlaylistSongCrossRef(
 )
 ```
 
-First, model the relationship between two of the tables in your set as you normally do, using a data class and the [`@Relation`](../api/annotations/relation.md) annotation. The following example shows a `PlaylistWithSongs` class that models a many-to-many relationship between the `Playlist` entity class and the `Song` entity class:
+First, model the relationship between two of the tables in your set using a data class and the [`@Relation`](../api/annotations/relation.md) annotation. The following example shows a `PlaylistWithSongs` class that models a many-to-many relationship between the `Playlist` entity class and the `Song` entity class:
 
 ```kotlin
 data class PlaylistWithSongs(
@@ -67,7 +68,7 @@ The `UserWithPlaylistsAndSongs` class indirectly models the relationships betwee
 
 If there are any more tables in your set, create a class to model the relationship between each remaining table and the relationship class that models the relationships between all previous tables. This creates a chain of nested relationships among all the tables that you want to query.
 
-Finally, add a method to the DAO class to expose the query function that your app needs. This method requires Room to run multiple queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation so that the whole operation is performed atomically:
+Finally, add a method to the DAO to expose the query function your app needs. This method requires Room to run multiple queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically:
 
 ```kotlin
 @Transaction

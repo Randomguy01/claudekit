@@ -2,13 +2,13 @@
 
 A one-to-many relationship between two entities is a relationship where each instance of the parent entity corresponds to zero or more instances of the child entity, but each instance of the child entity can only correspond to exactly one instance of the parent entity.
 
-efine and query one-to-many relationships in your database:
+Follow these steps to define and query one-to-many relationships in a database:
 1. **Define the relationship**: Create classes for both entities, with the child entity referencing the parent's primary key.
 2. **Query the entities**: Model the relationship in a new data class and implement a method to retrieve the related data.
 
 ## Define the Relationship
 
-To define a one-to-many relationship, first create a class for the two entities. As in a one-to-one relationship, the child entity must include a variable that is a reference to the primary key of the parent entity.
+To define a one-to-many relationship, create a class for each entity. As in a one-to-one relationship, the child entity must include a field that references the primary key of the parent entity.
 
 ```kotlin
 @Entity
@@ -28,7 +28,7 @@ data class Playlist(
 
 ## Query the Entities
 
-To do this, create a new data class where each instance holds an instance of the parent entity and a list of all corresponding child entity instances. Add the [`@Relation`](../api/annotations/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
+To query users with their playlists, create a new data class where each instance holds an instance of the parent entity and a list of all corresponding child entity instances. Add the [`@Relation`](../api/annotations/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
 
 ```kotlin
 data class UserWithPlaylists(
@@ -41,7 +41,7 @@ data class UserWithPlaylists(
 )
 ```
 
-Finally, add a method to the DAO class that returns all instances of the data class that pairs the parent entity and the child entity. This method requires Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to this method so that the whole operation is performed atomically.
+Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically.
 
 ```kotlin
 @Transaction

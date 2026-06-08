@@ -1,6 +1,6 @@
 # Migrate
 
-**It's important to preserve user data that is already in the on-device database when an app update changes the database schema**
+Preserve the user data already in the on-device database when an app update changes the schema.
 
 Room supports both automated and manual options for incremental migration. Automatic migrations work for most basic schema changes, but you might need to manually define migration paths for more complex changes.
 
@@ -33,7 +33,8 @@ abstract class AppDatabase : RoomDatabase() {
 }
 ```
 
-**Automated Room migrations rely on the generated database schema for both the old and the new versions of the database. If exportSchema is set to false, or if you have not yet compiled the database with the new version number, then automated migrations fail**
+> [!NOTE]
+> Automated Room migrations rely on the generated database schema for both the old and new versions. If `exportSchema` is set to `false`, or if you haven't yet compiled the database with the new version number, automated migrations fail.
 
 ### Automatic Migration Specifications
 
@@ -70,7 +71,8 @@ abstract class AppDatabase : RoomDatabase() {
 
 If you need to do more work after the automated migration completes, implement [`onPostMigrate()`](../api/interfaces/auto-migration-spec.md). If you implement this method in your `AutoMigrationSpec`, Room calls it after the automated migration completes.
 
-**In Kotlin, if you have multiple migrations of the same type you must use a container for multiple annotations, such as [`@RenameTable.Entries`](../api/annotations/rename-table.md)**
+> [!NOTE]
+> In Kotlin, if you have multiple migrations of the same type, use a container annotation such as [`@RenameTable.Entries`](../api/annotations/rename-table.md).
 
 ## Manual Migrations
 
@@ -96,9 +98,10 @@ Room.databaseBuilder(applicationContext, MyDb::class.java, "database-name")
   .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
 ```
 
-**Caution: To keep your migration logic functioning as expected, use full queries instead of referencing constants that represent the queries**
+> [!CAUTION]
+> To keep your migration logic working as expected, use full queries instead of referencing constants that represent the queries.
 
-**If you define both an automated migration and a manual migration for the same version, then Room uses the manual migration**
+You can use automated migrations for some versions and manual migrations for others. If you define both for the same version, Room uses the manual migration.
 
 ## Test Migrations
 
@@ -205,7 +208,7 @@ android {
 
 dependencies {
     ...
-    testImplementation("androidx.room:room-testing:2.8.4")
+    androidTestImplementation("androidx.room:room-testing:2.8.4")
 }
 ```
 
@@ -249,7 +252,7 @@ class MigrationTest {
 
 ### Test All Migrations
 
-It's recommended that you include a test that covers all the migrations defined for your app's database. This helps ensure that there is no discrepancy between a recently created database instance and an older instance that followed the defined migration paths.
+Include a test that covers all the migrations defined for your app's database. This helps ensure there is no discrepancy between a recently created database instance and an older instance that followed the defined migration paths.
 
 The following example demonstrates a test for all defined migrations:
 
@@ -302,13 +305,15 @@ Room.databaseBuilder(applicationContext, MyDb::class.java, "database-name")
 
 This method tells Room to destructively recreate the tables in your app's database when it needs to perform an incremental migration and there is no defined migration path.
 
-**Warning: Setting this option in your app's database builder means that Room *permanently deletes all data* from the tables in the user's database when it attempts to perform a migration and there is no defined migration path**
+> [!WARNING]
+> Setting this option in your app's database builder means Room *permanently deletes all data* from the tables in the user's database when it attempts a migration and there is no defined migration path.
 
 If you only want Room to fall back to destructive recreation in certain situations, there are a few alternatives to `fallbackToDestructiveMigration()`:
 - If specific versions of your schema history cause errors that you can't solve with migration paths, use [`fallbackToDestructiveMigrationFrom()`](https://developer.android.com/reference/kotlin/androidx/room/RoomDatabase.Builder#fallbacktodestructivemigrationfrom) instead. This method indicates that you want Room to fall back to destructive recreation only when migrating from specific versions.
 - If you want Room to fall back to destructive recreation only when migrating from a higher database version to a lower one, use [`fallbackToDestructiveMigrationOnDowngrade()`](https://developer.android.com/reference/kotlin/androidx/room/RoomDatabase.Builder#fallbacktodestructivemigrationondowngrade) instead.
 
-**In 2.2.0 and higher, Room can use a prepackaged database file in some fallback migration cases instead of leaving an empty database. To learn more, see [Prepopulate your Room database](https://developer.android.com/training/data-storage/room/prepopulate#migrations)**
+> [!NOTE]
+> In Room 2.2.0 and higher, Room can use a prepackaged database file in some fallback migration cases instead of leaving an empty database. See [Prepopulating](prepopulate.md#handle-migrations-that-include-prepackaged-databases).
 
 ## Handle Column Default Values When Upgrading to Room 2.2.0
 
@@ -356,7 +361,8 @@ To help ensure that the database schema is consistent across all users when colu
 2. Increase the database version number by 1.
 3. Define a migration path to the new version that implements the [drop and recreate strategy](https://www.sqlite.org/lang_altertable.html#otheralter) to add the necessary default values to the existing columns.
 
-**If your app's database falls back to destructive migrations, or if there are no migration paths that add a column with a default value, then this process is not required**
+> [!NOTE]
+> If your app's database falls back to destructive migrations, or if no migration paths add a column with a default value, this process is not required.
 
 The following example demonstrates this process:
 

@@ -4,7 +4,8 @@
 
 Prepopulating a database starts the app with a database that is already loaded with a specific set of data.
 
-**In-memory Room databases don't support prepopulating the database using `createFromAsset()` or `createFromFile()`**
+> [!NOTE]
+> In-memory Room databases don't support prepopulating with `createFromAsset()` or `createFromFile()`.
 
 ## Prepopulate from an App Asset
 
@@ -18,13 +19,12 @@ Room.databaseBuilder(appContext, AppDatabase::class.java, "Sample.db")
     .build()
 ```
 
-**Room validates the schema of the prepackaged database to ensure that its schema matches the database**
+> [!NOTE]
+> Room validates the prepackaged database's schema against the schema it expects. Export your schema to use as a reference when building the prepackaged file.
 
 ## Prepopulate from the File System
 
-The `createFromFile()` method accepts a `File` argument for the prepackaged database file. Room creates a copy of the designated file rather than opening it directly.
-
-**The app must have read permissions on the file**
+The `createFromFile()` method accepts a `File` argument for the prepackaged database file. Room creates a copy of the designated file rather than opening it directly, so the app must have read permissions on it.
 
 Call the `createFromFile()` method from your `RoomDatabase.Builder` with a prepackaged database file that is located anywhere in the device's file system *except* your app's `assets/` directory, before calling `build()`.
 

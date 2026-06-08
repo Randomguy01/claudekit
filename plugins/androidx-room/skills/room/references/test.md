@@ -6,9 +6,10 @@ There are 2 ways to test your database:
 - On an Android device.
 - On a host development machine (Not Recommended).
 
-For information about testing that's specific to database migrations, see [migrations](migrate.md).
+For information about testing that's specific to database migrations, see [Test Migrations](migrate.md#test-migrations).
 
-**When running tests, create mock instances of DAO classes**
+> [!NOTE]
+> When running tests, you can create mock instances of your [DAO](../api/annotations/dao.md) classes — you don't need a full database if you aren't testing the database itself. This works because DAOs don't leak any details of the database.
 
 ## Test on an Android Device
 
@@ -16,7 +17,6 @@ Test the database implementation by writing a JUnit test that runs on an Android
 
 To set up the test, create an in-memory version of your database to make your tests more hermetic.
 
-Example:
 ```kotlin
 @RunWith(AndroidJUnit4::class)
 class SimpleEntityReadWriteTest {
@@ -52,10 +52,11 @@ class SimpleEntityReadWriteTest {
 
 ## Test on Your Host Machine
 
-**Not Recommended: This setup allows your tests to run very quickly, but the version of SQLite running on the device—and the users' devices—might not match the version on the host machine**
+> [!NOTE]
+> This setup runs tests very quickly but isn't recommended: the version of SQLite on the host machine might not match the version on the device or on users' devices.
 
 Room uses the SQLite Support Library, which provides interfaces that match those in the Android Framework classes. This support allows you to pass custom implementations of the support library to test your database queries.
 
-### Test Your Migrations
+## Test Your Migrations
 
-Room supports incremental database migrations to retain existing app data in situations where an app update changes the database schema. An incorrectly defined migration could cause the app to crash. Make sure to test Room database migrations. See [migrations](migrate.md).
+Room supports incremental database migrations to retain existing app data in situations where an app update changes the database schema. An incorrectly defined migration could cause the app to crash. Make sure to test Room database migrations. See [Test Migrations](migrate.md#test-migrations).

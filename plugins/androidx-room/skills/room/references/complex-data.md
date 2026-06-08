@@ -4,11 +4,12 @@ Room provides functionality for converting between primitive and boxed types but
 
 ## Use Type Converters
 
-To store custom data types in a single database column, provide a *type converter*. Type converters are methods that tell Room how to convert custom types to and from known types that Room can persist. You identify type converters by using the [`@TypeConverter`](../api/annotations/type-converter.md) annotation.
+To store custom data types in a single database column, provide a *type converter*. Type converters are methods that tell Room how to convert custom types to and from known types that Room can persist. Identify type converters with the [`@TypeConverter`](../api/annotations/type-converter.md) annotation.
 
-**Room 2.3 and higher includes a default type converter for persisting enums. Existing type converters take precedence over the default**
+> [!NOTE]
+> Room 2.3 and higher includes a default type converter for persisting enums, so you don't need to define one. Existing type converters take precedence over the default.
 
-To persist instances of Date in your Room database, define type converters:
+To persist instances of `Date` in a Room database, define type converters:
 
 ```kotlin
 class Converters {
@@ -26,7 +27,7 @@ class Converters {
 
 This example defines two type converter methods: one that converts a `Date` object to a `Long` object, and one that performs the inverse conversion from `Long` to `Date`. Because Room knows how to persist `Long` objects, it can use these converters to persist `Date` objects.
 
-Next, you add the [`@TypeConverters`](../api/annotations/type-converters.md) annotation to the `AppDatabase` class so that Room knows about the converter class that you have defined:
+Next, add the [`@TypeConverters`](../api/annotations/type-converters.md) annotation to the `AppDatabase` class so Room knows about the converter class you defined:
 
 ```kotlin
 @Database(entities = [User::class], version = 1)
@@ -49,11 +50,11 @@ interface UserDao {
 }
 ```
 
-In this example, Room can use the defined type converter everywhere because you annotated `AppDatabase` with `@TypeConverters`. However, you can also scope type converters to specific entities or DAOs by annotating your `@Entity` or `@Dao` classes with `@TypeConverters`.
+In this example, Room uses the type converter everywhere because `AppDatabase` is annotated with `@TypeConverters`. To scope a converter to specific entities or DAOs instead, annotate those `@Entity` or `@Dao` classes with `@TypeConverters`.
 
 ### Control Type Converter Initialization
 
-Ordinarily, Room handles instantiation of type converters for you. However, sometimes you might need to pass additional dependencies to your type converter classes, which means that you need your app to directly control initialization of your type converters. In that case, annotate your converter class with [`@ProvidedTypeConverter`](../api/annotations/provided-type-converter.md):
+Ordinarily, Room instantiates type converters for you. To pass additional dependencies to a converter — which requires your app to control initialization — annotate the converter class with [`@ProvidedTypeConverter`](../api/annotations/provided-type-converter.md):
 
 ```kotlin
 @ProvidedTypeConverter
@@ -80,8 +81,8 @@ val db = Room.databaseBuilder(...)
 
 ## Understand Why Room Doesn't Allow Object References
 
-**Key takeaway: Room disallows object references between entity classes. Instead, you must
-explicitly request the data that your app needs**
+> [!IMPORTANT]
+> Room disallows object references between entity classes. Instead, you must explicitly request the data your app needs.
 
 Mapping relationships from a database to the respective object model is a common practice and works very well on the server side. Even when the program loads fields as they're accessed, the server still performs well.
 
@@ -99,4 +100,4 @@ However, this seemingly innocent change causes the `Author` table to be queried 
 
 If you query author information ahead of time, it becomes difficult to change how data is loaded if you no longer need that data. For example, if your app's UI no longer needs to display `Author` information, your app effectively loads data that it no longer displays, wasting valuable memory space. Your app's efficiency degrades even further if the `Author` class references another table, such as `Books`.
 
-To reference multiple entities at the same time using Room, you instead create a POJO that contains each entity, then write a query that joins the corresponding tables. This well-structured model, combined with Room's robust query validation capabilities, allows your app to consume fewer resources when loading data, improving your app's performance and user experience.
+To reference multiple entities at the same time using Room, create a POJO that contains each entity, then write a query that joins the corresponding tables (see [Relationships](relationship-overview.md)). This well-structured model, combined with Room's query validation, lets your app consume fewer resources when loading data, improving performance and user experience.

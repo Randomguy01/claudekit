@@ -1,15 +1,12 @@
 # DAO
 
-At compile time, Room automatically generates implementations of the DAOs.
-
-DAOs preserve separation of concerns, a critical architectural principle. DAOs make it easier to mock database access during testing.
+Data access objects (DAOs) contain the methods that access the database. Room generates DAO implementations at compile time.
 
 ## Defining a DAO
 
 - Define each DAO as either an interface (preferred) or an abstract class. 
 - You must annotate it with [`@Dao`](../api/annotations/dao.md).
 
-Example:
 ```kotlin
 @Dao
 interface UserDao {
@@ -24,17 +21,23 @@ interface UserDao {
 }
 ```
 
+> [!NOTE]
+> Room does not allow database access on the main thread. For `suspend` and `Flow` return types, see [Asynchronous DAO Queries](dao-async.md).
+
 ## Convenience Methods
 
-**For more complex behavior use a query method**
+> [!TIP]
+> For behavior beyond insert, update, and delete, use a query method instead.
 
 ### Insert
 
 The [`@Insert`](../api/annotations/insert.md) annotation defines methods that insert their parameters into the table.
 
-Each parameter for an `@Insert` method must be either an instance of an [entity](../api/annotations/entity.md) annotated with [`@Entity`](../api/annotations/entity.md) or a collection of data entity class instances. When an [`@Insert`](../api/annotations/insert.md) method is called, Room inserts each passed entity instance into the table.
+Each parameter for an `@Insert` method must be an instance of an [entity](../api/annotations/entity.md) annotated with [`@Entity`](../api/annotations/entity.md), or a collection of entity instances.
 
 If the [`@Insert`](../api/annotations/insert.md) method receives a single parameter, it can return the `long` value `rowId` for the inserted item. If the parameter is an array or a collection, then it can return an array or a collection of `long` values instead. To learn more about returning `rowId` values, see the reference documentation for the [`@Insert`](../api/annotations/insert.md) annotation and the [SQLite documentation for rowid tables](https://www.sqlite.org/rowidtable.html).
+
+The `onConflict` parameter sets how Room resolves a conflict with an existing row, such as `REPLACE` or `IGNORE`. See [`OnConflictStrategy`](../api/annotations/on-conflict-strategy.md).
 
 ```kotlin
 @Dao
@@ -83,11 +86,16 @@ interface UserDao {
 }
 ```
 
+### Upsert
+
+The [`@Upsert`](../api/annotations/upsert.md) annotation combines insert and update: it inserts an entity if it isn't already present, or updates it if it is.
+
 ## Query Methods
 
-The [`@Query`](../api/annotations/query.md) annotation defines raw SQL statements and exposes them as DAO methods. Use these query methods to query data or when you need to perform more complex insertions, updates, and deletions.
+The [`@Query`](../api/annotations/query.md) annotation defines raw SQL statements and exposes them as DAO methods. Use query methods to read data, or to perform complex insertions, updates, and deletions.
 
-**Room validates SQL queries at compile time**
+> [!NOTE]
+> Room validates SQL queries at compile time.
 
 ### Simple Queries
 
@@ -98,9 +106,10 @@ fun loadAllUsers(): Array<User>
 
 ### Return a Subset of a Table's Columns
 
-**To save resources and streamline your query's execution, only query the fields that you need**
+> [!TIP]
+> To save resources, query only the **fields you need**.
 
-You can return a simple object from any of your queries as long as you can map the set of result columns onto the returned object. For example, you can define the following object to hold a user's first and last name:
+Return a simple object from a query when the result columns map onto the object's fields. For example, define an object to hold a user's first and last name:
 ```kotlin
 data class NameTuple(
     @ColumnInfo(name = "first_name") val firstName: String?,
@@ -108,7 +117,7 @@ data class NameTuple(
 )
 ```
 
-Then, you can return that simple object from your query method:
+Then return that object from a query method:
 ```kotlin
 @Query("SELECT first_name, last_name FROM user")
 fun loadFullName(): List<NameTuple>
@@ -118,9 +127,8 @@ If the query returns a column that doesn't map onto a field in the returned obje
 
 ### Pass Simple Parameters to a Query
 
-Room supports using method parameters as bind parameters in your queries.
+Room supports method parameters as bind parameters in queries.
 
-Example:
 ```kotlin
 @Query("SELECT * FROM user WHERE age > :minAge")
 fun loadAllUsersOlderThan(minAge: Int): Array<User>
@@ -148,9 +156,11 @@ fun loadUsersFromRegions(regions: List<String>): List<User>
 
 ### Query Multiple Tables
 
-You can use JOIN clauses in your SQL queries to reference more than one table.
+Use JOIN clauses to reference more than one table.
 
-Example:
+> [!NOTE]
+> To model relationships between entities instead of joining tables manually, see [Relationships](relationship-overview.md).
+
 ```kotlin
 @Query(
     "SELECT * FROM book " +
@@ -180,9 +190,9 @@ interface UserBookDao {
 
 **Requires Room 2.4+**
 
-Query columns from multiple tables without defining an additional data class by writing query methods that return a multimap.
+Query columns from multiple tables without an extra data class by returning a multimap.
 
-Instead of returning a list of instances of a custom data class that holds pairings of User and Book instances, you can return a mapping of User and Book directly:
+Return a mapping of User to Book directly instead of a custom data class:
 ```kotlin
 @Query(
     "SELECT * FROM user " +
@@ -191,7 +201,7 @@ Instead of returning a list of instances of a custom data class that holds pairi
 fun loadUserAndBookNames(): Map<User, List<Book>>
 ```
 
-You can write queries that use GROUP BY clauses, letting you take advantage of SQL's capabilities for advanced calculations and filtering:
+Use GROUP BY clauses for advanced calculations and filtering:
 ```kotlin
 @Query(
     "SELECT * FROM user " +
@@ -213,7 +223,7 @@ fun loadUserAndBookNames(): Map<String, List<String>>
 
 ## Special Return Types
 
-Room provides some special return types for integration with other API libraries.
+Room provides special return types for integration with other libraries.
 
 ### Paginated Queries with the Paging Library
 
@@ -231,11 +241,11 @@ interface UserDao {
 
 ### Direct Cursor Access
 
-**Caution: NOT RECOMMENDED: The Cursor API doesn't guarantee that the rows exist or what values the rows contain. Only use this functionality if you already have code that expects a cursor and that you can't refactor easily.
+> [!CAUTION]
+> The Cursor API doesn't guarantee that rows exist or what values they contain. Only use it if you already have code that expects a cursor and can't easily refactor it.
 
-If your app's logic requires direct access to the return rows, you can write your DAO methods to return a [`Cursor`](https://developer.android.com/reference/kotlin/android/database/Cursor) object.
+To give your app's logic direct access to the returned rows, write a DAO method that returns a [`Cursor`](https://developer.android.com/reference/kotlin/android/database/Cursor) object.
 
-Example:
 ```kotlin
 @Dao
 interface UserDao {

@@ -16,12 +16,13 @@ data class User(
 )
 ```
 
-**Room must have access to a field, by making it public or by providing getter and setter methods for it**
+> [!NOTE]
+> Room must be able to access each persisted field. Make a field accessible by declaring it public or by providing getter and setter methods.
 
 ## Naming an Entity
 
-- Room uses the class name as table name, or set the `tableName` property of the [`@Entity`](../api/annotations/entity.md) annotation.
-- Room uses the field names as column names, or add the [`@ColumnInfo`](../api/annotations/column-info.md) annotation to the field and set the `name` property.
+- Room uses the class name as the table name. Set the `tableName` property of [`@Entity`](../api/annotations/entity.md) to override it.
+- Room uses the field names as column names. Add the [`@ColumnInfo`](../api/annotations/column-info.md) annotation to a field and set its `name` property to override.
 
 ```kotlin
 @Entity(tableName = "users")
@@ -32,11 +33,14 @@ data class User (
 )
 ```
 
+> [!NOTE]
+> Table and column names in SQLite are case-insensitive.
+
 ## Primary Key
 
-**Each Room entity must define a primary key that uniquely identifies each row in the corresponding database table**
+Each Room entity must define a primary key that uniquely identifies each row in its table.
 
-Single column primary key annotated with [`@PrimaryKey`](../api/annotations/primary-key.md).
+Annotate a single column with [`@PrimaryKey`](../api/annotations/primary-key.md):
 ```kotlin
 @Entity
 data class User(
@@ -46,7 +50,10 @@ data class User(
 )
 ```
 
-Composite primary key by listing those columns in the `primaryKeys` property of [`@Entity`](../api/annotations/entity.md).
+> [!NOTE]
+> To have Room assign automatic IDs to entity instances, set the `autoGenerate` property of `@PrimaryKey` to `true`.
+
+Define a composite primary key by listing the columns in the `primaryKeys` property of [`@Entity`](../api/annotations/entity.md):
 ```kotlin
 @Entity(primaryKeys = ["firstName", "lastName"])
 data class User(
@@ -57,7 +64,7 @@ data class User(
 
 ## Ignore Fields
 
-If an entity has fields that you don't want to persist, you can annotate them using [`@Ignore`](../api/annotations/ignore.md). 
+To exclude fields from persistence, annotate them with [`@Ignore`](../api/annotations/ignore.md):
 ```kotlin
 @Entity
 data class User(
@@ -82,7 +89,7 @@ data class RemoteUser(
 
 ## Full-Text Search
 
-**Requires `minSdkVersion` >= 16**
+**Requires Room 2.1.0+ and `minSdkVersion` >= 16**
 
 For very quick access to database information through full-text search (FTS), have your entities backed by a virtual table that uses either the FTS3 or FTS4 SQLite extension module. Add the [`@Fts3`](../api/annotations/fts3.md) or [`@Fts4`](../api/annotations/fts4.md) annotation.
 ```kotlin
@@ -97,7 +104,8 @@ data class User(
 )
 ```
 
-**FTS-enabled tables always use a primary key of type INTEGER and with the column name "rowid". If your FTS-table-backed entity defines a primary key, it must use that type and column name**
+> [!NOTE]
+> FTS-enabled tables always use a primary key of type `INTEGER` with the column name `"rowid"`. If your FTS-table-backed entity defines a primary key, it **must** use that type and column name.
 
 In cases where a table supports content in multiple languages, use the `languageId` option to specify the column that stores language information for each row.
 ```kotlin
@@ -113,7 +121,7 @@ Room provides several other options for defining FTS-backed entities, including 
 
 ## Table Index
 
-Add the `indices` property within the [`@Entity`](../api/annotations/entity.md) annotation. 
+Index columns to speed up queries that filter or sort on them. Add the `indices` property within the [`@Entity`](../api/annotations/entity.md) annotation.
 ```kotlin
 @Entity(indices = [Index(value = ["last_name", "address"])])
 data class User(
@@ -134,17 +142,16 @@ data class User(
 )
 ```
 
-## AutoValue-based objects
+## AutoValue-Based Objects
 
-**This capability is for Java-based entities only. Use data classes for Kotlin-based entities**
+> [!NOTE]
+> This capability is for Java-based entities only. Use data classes for Kotlin-based entities.
 
 **Requires Room 2.1.0 or above**
 
-You can use Java-based immutable value classes, which you annotate using [`@AutoValue`](../api/auto-value.md). Use this when two instances of an entity are considered to be equal if their columns contain identical values.
+Use Java-based immutable value classes, annotated with [`@AutoValue`](../api/auto-value.md), when two instances of an entity should be equal if their columns contain identical values.
 
-Then, you can annotate the class's abstract methods using [`@PrimaryKey`](../api/annotations/primary-key.md), [`@ColumnInfo`](../api/annotations/column-info.md), [`@Embedded`](../api/annotations/embedded.md), and [`@Relation`](../api/annotations/relation.md).
-
-**You must include the [`@CopyAnnotations`](../api/copy-annotations.md) so that Room can interpret the methods' auto-generated implementations properly**
+Annotate the class's abstract methods with [`@PrimaryKey`](../api/annotations/primary-key.md), [`@ColumnInfo`](../api/annotations/column-info.md), [`@Embedded`](../api/annotations/embedded.md), and [`@Relation`](../api/annotations/relation.md). You must include [`@CopyAnnotations`](../api/copy-annotations.md) so Room can interpret the methods' auto-generated implementations.
 
 ```kotlin
 @AutoValue

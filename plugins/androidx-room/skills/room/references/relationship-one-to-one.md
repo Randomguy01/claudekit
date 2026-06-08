@@ -8,9 +8,8 @@ Follow these steps to define and query one-to-one relationships in a database:
 
 ## Define the Relationship
 
-To define a one-to-one relationship, first create a class for each of your two entities. One of the entities must include a variable that is a reference to the primary key of the other entity.
+To define a one-to-one relationship, create a class for each entity. One entity must include a field that references the primary key of the other.
 ```kotlin
-
 @Entity
 data class User(
     @PrimaryKey val userId: Long,
@@ -42,7 +41,7 @@ data class UserAndLibrary(
 )
 ```
 
-Finally, add a method to the DAO class that returns all instances of the data class that pairs the parent entity and the child entity. This method requires Room to run two queries. You should therefore add the [`@Transaction`](../api/annotations/transaction.md) annotation to this method. This ensures that the whole operation runs atomically.
+Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically.
 
 ```kotlin
 @Transaction

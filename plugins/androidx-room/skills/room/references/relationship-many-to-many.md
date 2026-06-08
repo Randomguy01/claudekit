@@ -8,7 +8,7 @@ Follow these steps to define and query many-to-many relationships in your databa
 
 ## Define the Relationship
 
-To define a many-to-many relationship, first create a class for each of your two entities. Many-to-many relationships are distinct from other relationship types because there is generally no reference to the parent entity in the child entity. Instead, create a third class to represent an associative entity, or cross-reference table, between the two entities. The cross-reference table must have columns for the primary key from each entity in the many-to-many relationship represented in the table. In this example, each row in the cross-reference table corresponds to a pairing of a `Playlist` instance and a `Song` instance where the referenced song is included in the referenced playlist.
+To define a many-to-many relationship, create a class for each entity. Many-to-many relationships are distinct from other relationship types because there is generally no reference to the parent entity in the child entity. Instead, create a third class to represent an associative entity, or cross-reference table, between the two entities. The cross-reference table must have a column for each entity's primary key. In this example, each row in the cross-reference table corresponds to a pairing of a `Playlist` instance and a `Song` instance where the referenced song is included in the referenced playlist.
 
 ```kotlin
 @Entity
@@ -65,7 +65,7 @@ Finally, add a method to the DAO class to expose the query function your app nee
 - `getPlaylistsWithSongs`: this method queries the database and returns all the resulting `PlaylistWithSongs` objects.
 - `getSongsWithPlaylists`: this method queries the database and returns all the resulting `SongWithPlaylists` objects.
 
-These methods each require Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to both methods so that the whole operation is performed atomically.
+These methods each require Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to both methods to run the whole operation atomically.
 
 ```kotlin
 @Transaction
@@ -77,4 +77,5 @@ fun getPlaylistsWithSongs(): List<PlaylistWithSongs>
 fun getSongsWithPlaylists(): List<SongWithPlaylists>
 ```
 
-**If the [`@Relation`](../api/annotations/relation.md) annotation does not meet your specific use case, you might need to use the JOIN keyword in your SQL queries to manually define the appropriate relationships**
+> [!NOTE]
+> If the [`@Relation`](../api/annotations/relation.md) annotation doesn't meet your use case, use the `JOIN` keyword in your SQL queries to define the relationships manually. See [Query Multiple Tables](dao.md#query-multiple-tables).

@@ -1,14 +1,12 @@
 # Debug
 
-It's important to verify the stability of the app's database and the users' data when creating databases using the Room persistence library. This page discusses how to perform debugging steps.
-
-There are several tools and processes that you can use to debug a database.
+Several tools and processes can help you debug a Room database.
 
 ## Use the Database Inspector
 
 **Requires Android Studio 4.1+**
 
-The Database Inspector allows you to inspect, query, and modify an app's databases while an app is running.
+Use the Database Inspector to inspect, query, and modify an app's databases while the app is running.
 
 Features:
 - Use gutter actions to quickly run queries from [DAO classes](../api/annotations/dao.md).

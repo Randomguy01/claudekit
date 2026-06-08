@@ -1,6 +1,6 @@
 # Relationship Overview
 
-**You can define relationships between entities, but Room explicitly forbids entity objects from referencing each other, instead use relationships**
+You can define relationships between entities. Unlike most object-relational mapping libraries, Room forbids entity objects from referencing each other directly; define a relationship between them instead.
 
 ## Types of Relationships
 
@@ -17,11 +17,10 @@ Two ways to define and query a relationship between entities:
 - An intermediate data class with embedded objects.
 - A relational query method with a multimap return type.
 
-**Use multimap unless you have a specific reason to use intermediate data classes**
+> [!TIP]
+> Use the multimap return type unless you have a specific reason to use intermediate data classes. See [Return a Multimap](dao.md#return-a-multimap).
 
-Intermediate data classes avoid writing complex SQL queries, but can also result in increased code complexity because it requires additional data classes.
-
-The multimap return type approach requires your SQL queries to do more work, and the intermediate data class approach requires your code to do more work.
+The intermediate data class approach avoids complex SQL but requires extra data classes; the multimap approach needs no extra classes but puts more work in the SQL query.
 
 ### Use the Intermediate Data Class Approach
 
@@ -46,7 +45,6 @@ data class UserBook(val userName: String?, val bookName: String?)
 
 Define a multimap return type for the method based on the map structure, and define the relationship between the entities directly in the SQL query.
 
-Example:
 ```kotlin
 @Query(
     "SELECT * FROM user " +
@@ -59,7 +57,7 @@ fun loadUserAndBookNames(): Map<User, List<Book>>
 
 Use the [`@Embedded`](../api/annotations/embedded.md) annotation to represent an object decomposed into its subfields within a table.
 
-For example, your `User` class can include a field of type `Address` that represents a composition of fields named `street`, `city`, `state`, and `postCode`. To store the composed columns separately in the table, include an `Address` field. This should appear in the `User` class annotated with `@Embedded`. The following code snippet demonstrates this:
+For example, a `User` class can include an `Address` field composed of `street`, `city`, `state`, and `postCode`. Annotate the `Address` field with `@Embedded` to store its columns directly in the `User` table:
 
 ```kotlin
 data class Address(
@@ -79,8 +77,9 @@ data class User(
 
 The table representing a `User` object then contains columns with the following names: `id`, `firstName`, `street`, `state`, `city`, and `post_code`.
 
-**Embedded fields can also include other embedded fields**
+> [!NOTE]
+> Embedded fields can also include other embedded fields.
 
-If an entity has multiple embedded fields of the same type, you can keep each column unique by setting the `prefix` property. Room then adds the provided value to the beginning of each column name in the embedded object.
+When an entity has multiple embedded fields of the same type, set the `prefix` property to keep each column name unique. Room prepends the value to each column name in the embedded object.
 
 

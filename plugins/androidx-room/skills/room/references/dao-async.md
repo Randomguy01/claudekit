@@ -1,6 +1,6 @@
 # Asynchronous DAO Queries
 
-**To prevent queries from blocking the UI, Room does not allow database access on the main thread**
+To prevent queries from blocking the UI, Room does not allow database access on the main thread, so [DAO queries](dao.md) must be asynchronous.
 
 DAO queries fall into three categories:
 
@@ -10,7 +10,7 @@ DAO queries fall into three categories:
 
 ## Language and Framework Options
 
-Return types based on query type and framework:
+Return types by query type:
 | Query type      | Kotlin language features |
 |-----------------|--------------------------|
 | One-shot write  | Coroutines (`suspend`)   |
@@ -19,18 +19,17 @@ Return types based on query type and framework:
 
 ### Kotlin with Flow and Coroutines
 
-Kotlin provides language features that allow you to write asynchronous queries
-without third-party frameworks:
+Kotlin provides language features for writing asynchronous queries without third-party frameworks:
 - **Room 2.2+** Use Kotlin's [`Flow`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) functionality to write observable queries.
 - **Room 2.1+** Use the `suspend` keyword to make your DAO queries asynchronous using [Kotlin coroutines](https://developer.android.com/kotlin/coroutines).
 
-**Kotlin Flow and coroutines with Room require the `room-ktx` artifact** See [Installation Reference](install.md)
+> [!NOTE]
+> Kotlin Flow and coroutines with Room require the `room-ktx` artifact. See [Installation Reference](install.md).
 
 ## Write Asynchronous One-Shot Queries
 
 One-shot queries are database operations that only run once and grab a snapshot of data at the time of execution.
 
-Example:
 ```kotlin
 @Dao
 interface UserDao {
@@ -53,9 +52,8 @@ interface UserDao {
 
 ## Write Observable Queries
 
-Observable queries are read operations that emit new values whenever there are changes to any of the tables that are referenced by the query. Use this is to help keep a displayed list of items up to date as the items in the underlying database are inserted, updated, or removed.
+Observable queries are read operations that emit new values whenever any referenced table changes. Use them to keep a displayed list up to date as items are inserted, updated, or removed.
 
-Example:
 ```kotlin
 @Dao
 interface UserDao {
@@ -67,6 +65,5 @@ interface UserDao {
 }
 ```
 
-Observable queries in Room have one important limitation: the query reruns whenever any row in the table is updated, whether or not that row is in the result set.
-
-**Use the `distinctUntilChanged()` operator to ensure that the UI is only notified when the actual query results change**
+> [!NOTE]
+> Observable queries have one important limitation: the query reruns whenever any row in the table changes, even a row outside the result set. Apply the `distinctUntilChanged()` operator to notify the UI only when the actual results change.

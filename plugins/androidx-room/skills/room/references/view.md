@@ -2,15 +2,15 @@
 
 **Requires Room 2.1.0+**
 
-Room provides support for [SQLite database views](https://www.sqlite.org/lang_createview.html), allowing you to encapsulate a query into a class, called a *view*. They behave the same as simple data objects when used in a [DAO](../api/annotations/dao.md).
+Room supports SQLite database views, which encapsulate a query in a class called a *view*. A view behaves like a simple data object when used in a [DAO](../api/annotations/dao.md).
 
-**`SELECT` statements can be run against views. However, you cannot run `INSERT`, `UPDATE`, or `DELETE` statements against views**
+> [!NOTE]
+> Like [entities](entity.md), you can run `SELECT` statements against views, but not `INSERT`, `UPDATE`, or `DELETE` statements.
 
 ## Create a View
 
 To create a view, add the [`@DatabaseView`](../api/annotations/database-view.md) annotation to a class. Set the annotation's value to the query that the class should represent.
 
-Example:
 ```kotlin
 @DatabaseView("SELECT user.id, user.name, user.departmentId, " +
         "department.name AS departmentName FROM user " +
@@ -27,7 +27,6 @@ data class UserDetail(
 
 To include this view as part of your app's database, add the [`views`](../api/annotations/database.md) property to the [`@Database`](../api/annotations/database.md) annotation.
 
-Example:
 ```kotlin
 @Database(entities = [User::class],
           views = [UserDetail::class], version = 1)

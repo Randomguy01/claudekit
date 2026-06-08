@@ -1,8 +1,8 @@
-# Installing room
+# Installing Room
 
 ## Latest Version
 
-Run [latest.sh](scripts/latest.sh) to get the latest version
+Run [latest.sh](scripts/latest.sh) to get the latest version.
 
 ## Dependencies (app-level)
 
@@ -10,6 +10,9 @@ Required:
 - `androidx.room:room-runtime`
 - Kotlin Symbol Processing (KSP): `ksp("androidx.room:room-compiler")` — for projects with Kotlin source
 - Java annotation processor: `annotationProcessor("androidx.room:room-compiler")` — for Java-only projects
+
+> [!NOTE]
+> Choose only one of `ksp` or `annotationProcessor` — don't include both.
 
 Optional:
 - Kotlin Extensions & Coroutine Support: `androidx.room:room-ktx`
@@ -25,5 +28,6 @@ Optional:
 - `androidx.room`
 
 
-**Instructions**
-Install all required dependencies and plugins and determine if any optional dependencies or plugins are necessary.
+## Instructions
+
+Install all required dependencies and plugins, then determine whether any optional dependencies or plugins are necessary.
