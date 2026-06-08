@@ -2,7 +2,8 @@
 
 ## Latest Version
 
-Run [latest.sh](../scripts/latest.sh) to get the latest version.
+Run [versions.sh](../scripts/versions.sh) to get the latest stable version, or `versions.sh --all` to list every published version.
+Default to the latest stable version unless instructed otherwise.
 
 ## Dependencies (app-level)
 
