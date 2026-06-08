@@ -41,8 +41,6 @@ Begins a transaction and runs `block` within the transaction. If `block` fails t
 
 If [`inTransaction()`](#intransaction) returns `true` when this function is invoked, it is the equivalent of starting a nested transaction as if [`TransactionScope.withNestedTransaction()`](transaction-scope.md#withnestedtransaction) was invoked, and the `type` is ignored since it is inherited from the parent transaction.
 
-See also the [SQLite transaction documentation](https://www.sqlite.org/lang_transaction.html).
-
 - `type` — The type of transaction to begin.
 - `block` — The code that will execute within the transaction.
 

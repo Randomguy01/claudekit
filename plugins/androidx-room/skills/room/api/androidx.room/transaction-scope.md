@@ -41,8 +41,6 @@ Begins a nested transaction and runs `block` within the transaction. If `block` 
 
 A nested transaction is still governed by its parent transaction, which must also complete successfully for all its children transactions to be committed.
 
-See also the [SQLite savepoint documentation](https://www.sqlite.org/lang_savepoint.html).
-
 - `block` — The code that will execute within the transaction.
 
 ## Inherited Functions

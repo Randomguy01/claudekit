@@ -14,7 +14,7 @@ annotation Fts4
 
 Marks an [`@Entity`](entity.md) annotated class as an FTS4 entity. This class will have a mapping SQLite FTS4 table in the database.
 
-[FTS3 and FTS4](https://www.sqlite.org/fts3.html) are SQLite virtual table modules that allow full-text searches to be performed on a set of documents.
+FTS3 and FTS4 are SQLite virtual table modules that allow full-text searches to be performed on a set of documents.
 
 An FTS entity table always has a column named `rowid` that is the equivalent of an `INTEGER PRIMARY KEY` index. Therefore, an FTS entity can only have a single field annotated with [`@PrimaryKey`](primary-key.md); it must be named `rowid` and must be of `INTEGER` affinity. The field can optionally be omitted from the class but can still be used in queries.
 
@@ -75,7 +75,7 @@ In external mode, the content table and the FTS table need to be synced. Room cr
 
 The content sync triggers created by Room are removed before migrations are executed and re-created once migrations are complete. This prevents the triggers from interfering with migrations, but means that if data needs to be migrated then write operations might need to be done in both the FTS and content tables.
 
-See the [External Content FTS4 Tables](https://www.sqlite.org/fts3.html#_external_content_fts4_tables_) documentation for details.
+See the External Content FTS4 Tables documentation for details.
 
 ### languageId
 
@@ -87,7 +87,7 @@ The column name to be used as `languageid`.
 
 Allows the FTS4 extension to use the defined column name to specify the language stored in each row. When this is defined, a field of type `INTEGER` with the same name must exist in the class.
 
-FTS queries are affected by defining this option; see [the languageid= option documentation](https://www.sqlite.org/fts3.html#the_languageid_option) for details.
+FTS queries are affected by defining this option.
 
 ### matchInfo
 
@@ -97,7 +97,7 @@ val matchInfo: FtsOptions.MatchInfo
 
 The FTS version used to store text matching information.
 
-The default value is [`MatchInfo.FTS4`](fts-options-match-info.md#fts4). Disk space consumption can be reduced by setting this option to [`FTS3`](fts-options-match-info.md#fts3); see [the matchinfo= option documentation](https://www.sqlite.org/fts3.html#the_matchinfo_option) for details.
+The default value is [`MatchInfo.FTS4`](fts-options-match-info.md#fts4). Disk space consumption can be reduced by setting this option to [`FTS3`](fts-options-match-info.md#fts3).
 
 ### notIndexed
 
@@ -106,8 +106,6 @@ val notIndexed: Array<String>
 ```
 
 The list of column names on the FTS table that won't be indexed.
-
-For details, see the [notindexed= option documentation](https://www.sqlite.org/fts3.html#the_notindexed_option).
 
 ### order
 
@@ -127,8 +125,6 @@ val prefix: IntArray
 
 The list of prefix sizes to index.
 
-For details, see [the prefix= option documentation](https://www.sqlite.org/fts3.html#the_prefix_option).
-
 ### tokenizer
 
 ```
@@ -139,7 +135,7 @@ The tokenizer to be used in the FTS table.
 
 The default value is [`FtsOptions.TOKENIZER_SIMPLE`](fts-options.md#tokenizer_simple). Tokenizer arguments can be defined with `tokenizerArgs`.
 
-If a custom tokenizer is used, the tokenizer and its arguments are not verified at compile time. For details, see the [SQLite tokenizers documentation](https://www.sqlite.org/fts3.html#tokenizer).
+If a custom tokenizer is used, the tokenizer and its arguments are not verified at compile time.
 
 Built-in available tokenizers are [`FtsOptions.TOKENIZER_SIMPLE`](fts-options.md#tokenizer_simple), [`FtsOptions.TOKENIZER_PORTER`](fts-options.md#tokenizer_porter), and [`FtsOptions.TOKENIZER_UNICODE61`](fts-options.md#tokenizer_unicode61).
 
@@ -153,4 +149,4 @@ Optional arguments to configure the defined tokenizer.
 
 Tokenizer arguments consist of an argument name, followed by an `=` character, followed by the option value. For example, `separators=.` defines the dot character as an additional separator when using the `FtsOptions.TOKENIZER_UNICODE61` tokenizer.
 
-The available arguments depend on the tokenizer defined; see the [SQLite tokenizers documentation](https://www.sqlite.org/fts3.html#tokenizer) for details.
+The available arguments depend on the tokenizer defined.

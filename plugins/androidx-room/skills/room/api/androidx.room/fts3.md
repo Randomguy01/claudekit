@@ -14,7 +14,7 @@ annotation Fts3
 
 Marks an [`@Entity`](entity.md) annotated class as an FTS3 entity. This class will have a mapping SQLite FTS3 table in the database.
 
-[FTS3 and FTS4](https://www.sqlite.org/fts3.html) are SQLite virtual table modules that allow full-text searches to be performed on a set of documents.
+FTS3 and FTS4 are SQLite virtual table modules that allow full-text searches to be performed on a set of documents.
 
 An FTS entity table always has a column named `rowid` that is the equivalent of an `INTEGER PRIMARY KEY` index. Therefore, an FTS entity can only have a single field annotated with [`@PrimaryKey`](primary-key.md); it must be named `rowid` and must be of `INTEGER` affinity. The field can optionally be omitted from the class but can still be used in queries.
 
@@ -62,7 +62,7 @@ The tokenizer to be used in the FTS table.
 
 The default value is [`FtsOptions.TOKENIZER_SIMPLE`](fts-options.md#tokenizer_simple). Tokenizer arguments can be defined with `tokenizerArgs`.
 
-If a custom tokenizer is used, the tokenizer and its arguments are not verified at compile time. See the [SQLite tokenizers documentation](https://www.sqlite.org/fts3.html#tokenizer) for more details.
+If a custom tokenizer is used, the tokenizer and its arguments are not verified at compile time.
 
 Built-in available tokenizers are [`FtsOptions.TOKENIZER_SIMPLE`](fts-options.md#tokenizer_simple), [`FtsOptions.TOKENIZER_PORTER`](fts-options.md#tokenizer_porter), and [`FtsOptions.TOKENIZER_UNICODE61`](fts-options.md#tokenizer_unicode61).
 
@@ -76,4 +76,4 @@ Optional arguments to configure the defined tokenizer.
 
 Tokenizer arguments consist of an argument name, followed by an `=` character, followed by the option value. For example, `separators=.` defines the dot character as an additional separator when using the `FtsOptions.TOKENIZER_UNICODE61` tokenizer.
 
-The available arguments depend on the tokenizer defined; see the [SQLite tokenizers documentation](https://www.sqlite.org/fts3.html#tokenizer) for details.
+The available arguments depend on the tokenizer defined.
