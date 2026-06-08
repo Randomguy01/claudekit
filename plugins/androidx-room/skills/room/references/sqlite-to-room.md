@@ -14,10 +14,10 @@ Add the Room dependencies to the app's `build.gradle` file. See [Installing Room
 
 Room uses [data entities](entity.md) to represent tables: each entity class is a table, and its fields are columns. Update existing model classes to Room entities:
 
-1. Annotate the class with [`@Entity`](../api/annotations/entity.md). Optionally set the `tableName` property to give the table a name different from the class name.
-2. Annotate the primary key field with [`@PrimaryKey`](../api/annotations/primary-key.md).
-3. To give a column a name different from its field, annotate the field with [`@ColumnInfo`](../api/annotations/column-info.md) and set the `name` property.
-4. To exclude a field from the table, annotate it with [`@Ignore`](../api/annotations/ignore.md).
+1. Annotate the class with [`@Entity`](../api/androidx.room/entity.md). Optionally set the `tableName` property to give the table a name different from the class name.
+2. Annotate the primary key field with [`@PrimaryKey`](../api/androidx.room/primary-key.md).
+3. To give a column a name different from its field, annotate the field with [`@ColumnInfo`](../api/androidx.room/column-info.md) and set the `name` property.
+4. To exclude a field from the table, annotate it with [`@Ignore`](../api/androidx.room/ignore.md).
 5. If the class has more than one constructor, annotate all but the one Room should use with `@Ignore`.
 
 ```kotlin
@@ -53,7 +53,7 @@ The `User` entity stores a `Date`, which SQLite can't persist directly, so this 
 
 ### Define a Migration Path
 
-Because the database version number is changing, define a [`Migration`](../api/classes/migration.md) object so Room keeps the existing data. As long as the schema doesn't change, this can be an empty implementation:
+Because the database version number is changing, define a [`Migration`](../api/androidx.room.migration/migration.md) object so Room keeps the existing data. As long as the schema doesn't change, this can be an empty implementation:
 
 ```kotlin
 val MIGRATION_1_2 = object : Migration(1, 2) {

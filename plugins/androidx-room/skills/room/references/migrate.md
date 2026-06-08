@@ -38,15 +38,15 @@ abstract class AppDatabase : RoomDatabase() {
 
 ### Automatic Migration Specifications
 
-If Room detects ambiguous schema changes and it can't generate a migration plan without more input, it throws a compile-time error. Then, you must implement an [`AutoMigrationSpec`](../api/interfaces/auto-migration-spec.md). This occurs when a migration involves one of the following:
+If Room detects ambiguous schema changes and it can't generate a migration plan without more input, it throws a compile-time error. Then, you must implement an [`AutoMigrationSpec`](../api/androidx.room.migration/auto-migration-spec.md). This occurs when a migration involves one of the following:
 - Deleting or renaming a table.
 - Deleting or renaming a column.
 
 Use `AutoMigrationSpec` to give Room the additional information that it needs to correctly generate migration paths. Define a static class that implements `AutoMigrationSpec` in your `RoomDatabase` class and annotate it with one or more of the following:
-- [`@DeleteTable`](../api/annotations/delete-table.md)
-- [`@RenameTable`](../api/annotations/rename-table.md)
-- [`@DeleteColumn`](../api/annotations/delete-column.md)
-- [`@RenameColumn`](../api/annotations/rename-column.md)
+- [`@DeleteTable`](../api/androidx.room/delete-table.md)
+- [`@RenameTable`](../api/androidx.room/rename-table.md)
+- [`@DeleteColumn`](../api/androidx.room/delete-column.md)
+- [`@RenameColumn`](../api/androidx.room/rename-column.md)
 
 To use the `AutoMigrationSpec` implementation for an automated migration, set the `spec` property in the corresponding `@AutoMigration` annotation:
 
@@ -69,16 +69,16 @@ abstract class AppDatabase : RoomDatabase() {
 }
 ```
 
-If you need to do more work after the automated migration completes, implement [`onPostMigrate()`](../api/interfaces/auto-migration-spec.md). If you implement this method in your `AutoMigrationSpec`, Room calls it after the automated migration completes.
+If you need to do more work after the automated migration completes, implement [`onPostMigrate()`](../api/androidx.room.migration/auto-migration-spec.md). If you implement this method in your `AutoMigrationSpec`, Room calls it after the automated migration completes.
 
 > [!NOTE]
-> In Kotlin, if you have multiple migrations of the same type, use a container annotation such as [`@RenameTable.Entries`](../api/annotations/rename-table.md).
+> In Kotlin, if you have multiple migrations of the same type, use a container annotation such as [`@RenameTable.Entries`](../api/androidx.room/rename-table.md).
 
 ## Manual Migrations
 
-For complex schema changes, Room might not be able to generate a migration path automatically. If you decide to split the data in a table into two tables, Room can't tell how to perform this split. In cases like these, you must manually define a migration path by implementing a [`Migration`](../api/classes/migration.md) class.
+For complex schema changes, Room might not be able to generate a migration path automatically. If you decide to split the data in a table into two tables, Room can't tell how to perform this split. In cases like these, you must manually define a migration path by implementing a [`Migration`](../api/androidx.room.migration/migration.md) class.
 
-A `Migration` class explicitly defines a migration path between a `startVersion` and an `endVersion` by overriding the [`Migration.migrate()`](../api/classes/migration.md) method. Add the `Migration` classes to the database builder using the [`addMigrations()`](../api/annotations/database.md) method:
+A `Migration` class explicitly defines a migration path between a `startVersion` and an `endVersion` by overriding the [`Migration.migrate()`](../api/androidx.room.migration/migration.md) method. Add the `Migration` classes to the database builder using the [`addMigrations()`](../api/androidx.room/database.md) method:
 
 ```kotlin
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -212,7 +212,7 @@ dependencies {
 }
 ```
 
-The testing package provides a [`MigrationTestHelper`](../api/classes/migration-test-helper.md) class, which can read exported schema files. The package also implements the JUnit4 [`TestRule`](../api/test-rule.md) interface, so it can manage created databases.
+The testing package provides a [`MigrationTestHelper`](../api/androidx.room.testing/migration-test-helper.md) class, which can read exported schema files. The package also implements the JUnit4 `TestRule` interface, so it can manage created databases.
 
 The following example demonstrates a test for a single migration:
 
@@ -317,7 +317,7 @@ If you only want Room to fall back to destructive recreation in certain situatio
 
 ## Handle Column Default Values When Upgrading to Room 2.2.0
 
-In Room 2.2.0 and higher, you can define a default value for a column by using the annotation [`@ColumnInfo(defaultValue = "...")`](../api/annotations/column-info.md). In versions lower than 2.2.0, the only way to define a default value for a column is by defining it directly in an executed SQL statement, which creates a default value that Room does not know about. This means that if a database is originally created by a version of Room lower than 2.2.0, upgrading your app to use Room 2.2.0 might require you to provide a special migration path for existing default values that you defined without using Room APIs.
+In Room 2.2.0 and higher, you can define a default value for a column by using the annotation [`@ColumnInfo(defaultValue = "...")`](../api/androidx.room/column-info.md). In versions lower than 2.2.0, the only way to define a default value for a column is by defining it directly in an executed SQL statement, which creates a default value that Room does not know about. This means that if a database is originally created by a version of Room lower than 2.2.0, upgrading your app to use Room 2.2.0 might require you to provide a special migration path for existing default values that you defined without using Room APIs.
 
 For example, suppose that version 1 of a database defines a `Song` entity:
 
@@ -354,7 +354,7 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 
 This causes a discrepancy in the underlying table between updates and fresh installs of the app. Because the default value for the `tag` column is only declared in the migration path from version 1 to version 2, any users who install the app starting from version 2 don't have the default value for `tag` in their database schema.
 
-In versions of Room lower than 2.2.0, this discrepancy is harmless. However, if the app later upgrades to use Room 2.2.0 or higher and changes the `Song` entity class to include a default value for `tag` using the [`@ColumnInfo`](../api/annotations/column-info.md) annotation, Room can then see this discrepancy. This results in failed schema validations.
+In versions of Room lower than 2.2.0, this discrepancy is harmless. However, if the app later upgrades to use Room 2.2.0 or higher and changes the `Song` entity class to include a default value for `tag` using the [`@ColumnInfo`](../api/androidx.room/column-info.md) annotation, Room can then see this discrepancy. This results in failed schema validations.
 
 To help ensure that the database schema is consistent across all users when column default values are declared in your earlier migration paths, do the following the first time you upgrade your app to use Room 2.2.0 or higher:
 1. Declare column default values in their respective entity classes using the `@ColumnInfo` annotation.

@@ -28,7 +28,7 @@ data class Playlist(
 
 ## Query the Entities
 
-To query users with their playlists, create a new data class where each instance holds an instance of the parent entity and a list of all corresponding child entity instances. Add the [`@Relation`](../api/annotations/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
+To query users with their playlists, create a new data class where each instance holds an instance of the parent entity and a list of all corresponding child entity instances. Add the [`@Relation`](../api/androidx.room/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
 
 ```kotlin
 data class UserWithPlaylists(
@@ -41,7 +41,7 @@ data class UserWithPlaylists(
 )
 ```
 
-Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically.
+Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/androidx.room/transaction.md) annotation to run the whole operation atomically.
 
 ```kotlin
 @Transaction

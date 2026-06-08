@@ -4,8 +4,8 @@ Each entity corresponds to a table in the Room database, and each instance repre
 
 ## Defining an Entity
 
-- Define each Room entity as a class annotated with [`@Entity`](../api/annotations/entity.md). 
-- A Room entity includes fields for each column in the table, including one or more columns that make up the [primary key](../api/annotations/primary-key.md).
+- Define each Room entity as a class annotated with [`@Entity`](../api/androidx.room/entity.md). 
+- A Room entity includes fields for each column in the table, including one or more columns that make up the [primary key](../api/androidx.room/primary-key.md).
 
 ```kotlin
 @Entity
@@ -21,8 +21,8 @@ data class User(
 
 ## Naming an Entity
 
-- Room uses the class name as the table name. Set the `tableName` property of [`@Entity`](../api/annotations/entity.md) to override it.
-- Room uses the field names as column names. Add the [`@ColumnInfo`](../api/annotations/column-info.md) annotation to a field and set its `name` property to override.
+- Room uses the class name as the table name. Set the `tableName` property of [`@Entity`](../api/androidx.room/entity.md) to override it.
+- Room uses the field names as column names. Add the [`@ColumnInfo`](../api/androidx.room/column-info.md) annotation to a field and set its `name` property to override.
 
 ```kotlin
 @Entity(tableName = "users")
@@ -40,7 +40,7 @@ data class User (
 
 Each Room entity must define a primary key that uniquely identifies each row in its table.
 
-Annotate a single column with [`@PrimaryKey`](../api/annotations/primary-key.md):
+Annotate a single column with [`@PrimaryKey`](../api/androidx.room/primary-key.md):
 ```kotlin
 @Entity
 data class User(
@@ -53,7 +53,7 @@ data class User(
 > [!NOTE]
 > To have Room assign automatic IDs to entity instances, set the `autoGenerate` property of `@PrimaryKey` to `true`.
 
-Define a composite primary key by listing the columns in the `primaryKeys` property of [`@Entity`](../api/annotations/entity.md):
+Define a composite primary key by listing the columns in the `primaryKeys` property of [`@Entity`](../api/androidx.room/entity.md):
 ```kotlin
 @Entity(primaryKeys = ["firstName", "lastName"])
 data class User(
@@ -64,7 +64,7 @@ data class User(
 
 ## Ignore Fields
 
-To exclude fields from persistence, annotate them with [`@Ignore`](../api/annotations/ignore.md):
+To exclude fields from persistence, annotate them with [`@Ignore`](../api/androidx.room/ignore.md):
 ```kotlin
 @Entity
 data class User(
@@ -74,7 +74,7 @@ data class User(
 )
 ```
 
-When an entity inherits fields from a parent entity, use the `ignoredColumns` property of the [`@Entity`](../api/annotations/entity.md) attribute.
+When an entity inherits fields from a parent entity, use the `ignoredColumns` property of the [`@Entity`](../api/androidx.room/entity.md) attribute.
 ```kotlin
 open class User {
     var picture: Bitmap? = null
@@ -91,7 +91,7 @@ data class RemoteUser(
 
 **Requires Room 2.1.0+ and `minSdkVersion` >= 16**
 
-For very quick access to database information through full-text search (FTS), have your entities backed by a virtual table that uses either the FTS3 or FTS4 SQLite extension module. Add the [`@Fts3`](../api/annotations/fts3.md) or [`@Fts4`](../api/annotations/fts4.md) annotation.
+For very quick access to database information through full-text search (FTS), have your entities backed by a virtual table that uses either the FTS3 or FTS4 SQLite extension module. Add the [`@Fts3`](../api/androidx.room/fts3.md) or [`@Fts4`](../api/androidx.room/fts4.md) annotation.
 ```kotlin
 // Use `@Fts3` only if your app has strict disk space requirements or if you require compatibility with an older SQLite version.
 @Fts4
@@ -117,11 +117,11 @@ data class User(
 )
 ```
 
-Room provides several other options for defining FTS-backed entities, including result ordering, tokenizer types, and tables managed as external content. For more details about these options, see the [`FtsOptions`](../api/objects/fts-options.md) reference.
+Room provides several other options for defining FTS-backed entities, including result ordering, tokenizer types, and tables managed as external content. For more details about these options, see the [`FtsOptions`](../api/androidx.room/fts-options.md) reference.
 
 ## Table Index
 
-Index columns to speed up queries that filter or sort on them. Add the `indices` property within the [`@Entity`](../api/annotations/entity.md) annotation.
+Index columns to speed up queries that filter or sort on them. Add the `indices` property within the [`@Entity`](../api/androidx.room/entity.md) annotation.
 ```kotlin
 @Entity(indices = [Index(value = ["last_name", "address"])])
 data class User(
@@ -132,7 +132,7 @@ data class User(
 )
 ```
 
-Enforce uniqueness by setting the `unique` property of an [`@Index`](../api/annotations/index.md) annotation to `true`. 
+Enforce uniqueness by setting the `unique` property of an [`@Index`](../api/androidx.room/index.md) annotation to `true`. 
 ```kotlin
 @Entity(indices = [Index(value = ["first_name", "last_name"], unique = true)])
 data class User(
@@ -151,7 +151,7 @@ data class User(
 
 Use Java-based immutable value classes, annotated with [`@AutoValue`](../api/auto-value.md), when two instances of an entity should be equal if their columns contain identical values.
 
-Annotate the class's abstract methods with [`@PrimaryKey`](../api/annotations/primary-key.md), [`@ColumnInfo`](../api/annotations/column-info.md), [`@Embedded`](../api/annotations/embedded.md), and [`@Relation`](../api/annotations/relation.md). You must include [`@CopyAnnotations`](../api/copy-annotations.md) so Room can interpret the methods' auto-generated implementations.
+Annotate the class's abstract methods with [`@PrimaryKey`](../api/androidx.room/primary-key.md), [`@ColumnInfo`](../api/androidx.room/column-info.md), [`@Embedded`](../api/androidx.room/embedded.md), and [`@Relation`](../api/androidx.room/relation.md). You must include [`@CopyAnnotations`](../api/androidx.room/copy-annotations.md) so Room can interpret the methods' auto-generated implementations.
 
 ```kotlin
 @AutoValue

@@ -37,7 +37,7 @@ The next step depends on how you want to query these related entities.
 - If you want to query *playlists* and a list of the corresponding *songs* for each playlist, create a new data class that contains a single `Playlist` object and a list of all of the `Song` objects that the playlist includes.
 - If you want to query *songs* and a list of the corresponding *playlists* for each, create a new data class that contains a single `Song` object and a list of all of the `Playlist` objects in which the song is included.
 
-In either case, model the relationship between the entities by using the `associateBy` property in the [`@Relation`](../api/annotations/relation.md) annotation in each of these classes to identify the cross-reference entity providing the relationship between the `Playlist` entity and the `Song` entity.
+In either case, model the relationship between the entities by using the `associateBy` property in the [`@Relation`](../api/androidx.room/relation.md) annotation in each of these classes to identify the cross-reference entity providing the relationship between the `Playlist` entity and the `Song` entity.
 
 ```kotlin
 data class PlaylistWithSongs(
@@ -65,7 +65,7 @@ Finally, add a method to the DAO class to expose the query function your app nee
 - `getPlaylistsWithSongs`: this method queries the database and returns all the resulting `PlaylistWithSongs` objects.
 - `getSongsWithPlaylists`: this method queries the database and returns all the resulting `SongWithPlaylists` objects.
 
-These methods each require Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to both methods to run the whole operation atomically.
+These methods each require Room to run two queries, so add the [`@Transaction`](../api/androidx.room/transaction.md) annotation to both methods to run the whole operation atomically.
 
 ```kotlin
 @Transaction
@@ -78,4 +78,4 @@ fun getSongsWithPlaylists(): List<SongWithPlaylists>
 ```
 
 > [!NOTE]
-> If the [`@Relation`](../api/annotations/relation.md) annotation doesn't meet your use case, use the `JOIN` keyword in your SQL queries to define the relationships manually. See [Query Multiple Tables](dao.md#query-multiple-tables).
+> If the [`@Relation`](../api/androidx.room/relation.md) annotation doesn't meet your use case, use the `JOIN` keyword in your SQL queries to define the relationships manually. See [Query Multiple Tables](dao.md#query-multiple-tables).

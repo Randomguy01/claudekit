@@ -24,7 +24,7 @@ The intermediate data class approach avoids complex SQL but requires extra data 
 
 ### Use the Intermediate Data Class Approach
 
-Define a data class that models the relationship between Room entities. This data class holds the pairings between instances of one entity and instances of another entity as [embedded objects](../api/annotations/embedded.md). The query methods then return instances of this data class for use in the app.
+Define a data class that models the relationship between Room entities. This data class holds the pairings between instances of one entity and instances of another entity as [embedded objects](../api/androidx.room/embedded.md). The query methods then return instances of this data class for use in the app.
 ```kotlin
 @Dao
 interface UserBookDao {
@@ -55,7 +55,7 @@ fun loadUserAndBookNames(): Map<User, List<Book>>
 
 ## Create Embedded Objects
 
-Use the [`@Embedded`](../api/annotations/embedded.md) annotation to represent an object decomposed into its subfields within a table.
+Use the [`@Embedded`](../api/androidx.room/embedded.md) annotation to represent an object decomposed into its subfields within a table.
 
 For example, a `User` class can include an `Address` field composed of `street`, `city`, `state`, and `postCode`. Annotate the `Address` field with `@Embedded` to store its columns directly in the `User` table:
 

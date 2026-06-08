@@ -9,7 +9,7 @@ Several tools and processes can help you debug a Room database.
 Use the Database Inspector to inspect, query, and modify an app's databases while the app is running.
 
 Features:
-- Use gutter actions to quickly run queries from [DAO classes](../api/annotations/dao.md).
+- Use gutter actions to quickly run queries from [DAO classes](../api/androidx.room/dao.md).
 - Immediately see live updates in the Database Inspector when the running app makes changes to the data.
 
 ## Dump Data from the Command Line

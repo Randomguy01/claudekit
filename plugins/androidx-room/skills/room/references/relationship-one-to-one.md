@@ -28,7 +28,7 @@ data class Library(
 
 To query the list of users and corresponding libraries, you must first model the one-to-one relationship between the two entities.
 
-To do this, create a new data class where each instance holds an instance of the parent entity and the corresponding instance of the child entity. Add the [`@Relation`](../api/annotations/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
+To do this, create a new data class where each instance holds an instance of the parent entity and the corresponding instance of the child entity. Add the [`@Relation`](../api/androidx.room/relation.md) annotation to the instance of the child entity, with `parentColumn` set to the name of the primary key column of the parent entity and `entityColumn` set to the name of the column of the child entity that references the parent entity's primary key.
 
 ```kotlin
 data class UserAndLibrary(
@@ -41,7 +41,7 @@ data class UserAndLibrary(
 )
 ```
 
-Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically.
+Finally, add a method to the DAO that returns all instances of the data class pairing the parent and child entities. This method requires Room to run two queries, so add the [`@Transaction`](../api/androidx.room/transaction.md) annotation to run the whole operation atomically.
 
 ```kotlin
 @Transaction

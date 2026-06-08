@@ -9,7 +9,7 @@ There are 2 ways to test your database:
 For information about testing that's specific to database migrations, see [Test Migrations](migrate.md#test-migrations).
 
 > [!NOTE]
-> When running tests, you can create mock instances of your [DAO](../api/annotations/dao.md) classes — you don't need a full database if you aren't testing the database itself. This works because DAOs don't leak any details of the database.
+> When running tests, you can create mock instances of your [DAO](../api/androidx.room/dao.md) classes — you don't need a full database if you aren't testing the database itself. This works because DAOs don't leak any details of the database.
 
 ## Test on an Android Device
 

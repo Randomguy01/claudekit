@@ -19,9 +19,9 @@ To install or verify installation of Room follow the (installtion reference)[ref
 # Primary Components
 
 Three primary components:
-- (Database)[api/annotations/database.md]: Holds the database and serves as the main access point for the underlying database connection
-- (Entities)[api/annotations/entity.md]: Represent tables
-- (Data Access Objects (DAOs))[api/annotations/dao.md]: Interface to query, update, insert, and delete data
+- (Database)[api/androidx.room/database.md]: Holds the database and serves as the main access point for the underlying database connection
+- (Entities)[api/androidx.room/entity.md]: Represent tables
+- (Data Access Objects (DAOs))[api/androidx.room/dao.md]: Interface to query, update, insert, and delete data
 
 # Entities
 

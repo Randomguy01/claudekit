@@ -36,7 +36,7 @@ data class PlaylistSongCrossRef(
 )
 ```
 
-First, model the relationship between two of the tables in your set using a data class and the [`@Relation`](../api/annotations/relation.md) annotation. The following example shows a `PlaylistWithSongs` class that models a many-to-many relationship between the `Playlist` entity class and the `Song` entity class:
+First, model the relationship between two of the tables in your set using a data class and the [`@Relation`](../api/androidx.room/relation.md) annotation. The following example shows a `PlaylistWithSongs` class that models a many-to-many relationship between the `Playlist` entity class and the `Song` entity class:
 
 ```kotlin
 data class PlaylistWithSongs(
@@ -68,7 +68,7 @@ The `UserWithPlaylistsAndSongs` class indirectly models the relationships betwee
 
 If there are any more tables in your set, create a class to model the relationship between each remaining table and the relationship class that models the relationships between all previous tables. This creates a chain of nested relationships among all the tables that you want to query.
 
-Finally, add a method to the DAO to expose the query function your app needs. This method requires Room to run multiple queries, so add the [`@Transaction`](../api/annotations/transaction.md) annotation to run the whole operation atomically:
+Finally, add a method to the DAO to expose the query function your app needs. This method requires Room to run multiple queries, so add the [`@Transaction`](../api/androidx.room/transaction.md) annotation to run the whole operation atomically:
 
 ```kotlin
 @Transaction
