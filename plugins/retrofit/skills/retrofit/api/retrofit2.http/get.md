@@ -1,0 +1,33 @@
+# API Reference
+
+> Last updated 2026-06-09 · Retrofit 3.x
+
+# GET
+
+Package `retrofit2.http`
+
+```java
+@Documented
+@Target(value=METHOD)
+@Retention(value=RUNTIME)
+public @interface GET
+```
+
+Make a GET request.
+
+```java
+@GET("users/{id}")
+Call<User> getUser(@Path("id") String id);
+```
+
+## Elements
+
+### value
+
+```java
+String value default ""
+```
+
+A relative or absolute path, or full URL of the endpoint. Optional if the first parameter of the method is annotated with [`@Url`](url.md).
+
+See [base URL](../retrofit2/retrofit-builder.md#baseurl) for how this is resolved against a base URL to create the full endpoint URL.
