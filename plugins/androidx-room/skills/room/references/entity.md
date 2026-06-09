@@ -149,9 +149,9 @@ data class User(
 
 **Requires Room 2.1.0 or above**
 
-Use Java-based immutable value classes, annotated with [`@AutoValue`](../api/auto-value.md), when two instances of an entity should be equal if their columns contain identical values.
+Use Java-based immutable value classes, annotated with `@AutoValue`, when two instances of an entity should be equal if their columns contain identical values.
 
-Annotate the class's abstract methods with [`@PrimaryKey`](../api/androidx.room/primary-key.md), [`@ColumnInfo`](../api/androidx.room/column-info.md), [`@Embedded`](../api/androidx.room/embedded.md), and [`@Relation`](../api/androidx.room/relation.md). You must include [`@CopyAnnotations`](../api/androidx.room/copy-annotations.md) so Room can interpret the methods' auto-generated implementations.
+Annotate the class's abstract methods with [`@PrimaryKey`](../api/androidx.room/primary-key.md), [`@ColumnInfo`](../api/androidx.room/column-info.md), [`@Embedded`](../api/androidx.room/embedded.md), and [`@Relation`](../api/androidx.room/relation.md). You must include `@CopyAnnotations` so Room can interpret the methods' auto-generated implementations.
 
 ```kotlin
 @AutoValue

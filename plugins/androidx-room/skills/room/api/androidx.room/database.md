@@ -12,9 +12,9 @@
 annotation Database
 ```
 
-Marks a class as a [`RoomDatabase`]().
+Marks a class as a [`RoomDatabase`](room-database.md).
 
-The class must be an abstract class and extend [`RoomDatabase`]().
+The class must be an abstract class and extend [`RoomDatabase`](room-database.md).
 
 ```kotlin
 // Song and Album are classes annotated with @Entity.
@@ -37,15 +37,15 @@ Create [Dao](dao.md) classes instead of running queries on the database directly
 
 **Room verifies all queries in the [Dao](dao.md) classes at compile time**
 
-Automatically generate a migration between two versions of the database using [`AutoMigration`]() annotations. Note that if an autoMigration is defined in a database, `exportSchema` must be `true` and you must have the schema for both database versions.
+Automatically generate a migration between two versions of the database using [`AutoMigration`](auto-migration.md) annotations. Note that if an autoMigration is defined in a database, `exportSchema` must be `true` and you must have the schema for both database versions.
 
 |         See also         |
 |--------------------------|
 | [Dao](dao.md)            |
 | [Entity](entity.md)      |
-| [`AutoMigration`]()      |
-| [`RoomDatabase`]()       |
-| [`ConstructedBy`]()      |
+| [`AutoMigration`](auto-migration.md)      |
+| [`RoomDatabase`](room-database.md)       |
+| [`ConstructedBy`](constructed-by.md) |
 
 ## Public Constructors
 
@@ -69,11 +69,11 @@ Database(
 val autoMigrations: Array<AutoMigration>
 ```
 
-List of [`AutoMigration`]() that can be performed on this Database.
+List of [`AutoMigration`](auto-migration.md) that can be performed on this Database.
 
-See [`AutoMigration`]() for example code usage.
+See [`AutoMigration`](auto-migration.md) for example code usage.
 
-For more complicated cases not covered by [`AutoMigration`](), runtime defined [`Migration`]() added with [`RoomDatabase.Builder.addMigrations`]() can still be used.
+For more complicated cases not covered by [`AutoMigration`](auto-migration.md), runtime defined [`Migration`](../androidx.room.migration/migration.md) added with [`RoomDatabase.Builder.addMigrations`](room-database-builder.md) can still be used.
 
 ### entities
 

@@ -14,7 +14,7 @@ annotation PrimaryKey
 
 Marks a field in an [`Entity`](entity.md) as the primary key.
 
-If you would like to define a composite primary key, you should use [`Entity.primaryKeys`](entity.md#primarykey) method.
+If you would like to define a composite primary key, you should use [`Entity.primaryKeys`](entity.md#primarykeys) method.
 
 Each [`Entity`](entity.md) must declare a primary key unless one of its super classes declares a primary key. If both an [`Entity`](entity.md) and its super class defines a [`PrimaryKey`](primary-key.md), the child's [`PrimaryKey`](primary-key.md) definition will override the parent's [`PrimaryKey`](primary-key.md).
 
