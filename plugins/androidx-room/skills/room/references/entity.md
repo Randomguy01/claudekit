@@ -153,7 +153,7 @@ Use Java-based immutable value classes, annotated with `@AutoValue`, when two in
 
 Annotate the class's abstract methods with [`@PrimaryKey`](../api/androidx.room/primary-key.md), [`@ColumnInfo`](../api/androidx.room/column-info.md), [`@Embedded`](../api/androidx.room/embedded.md), and [`@Relation`](../api/androidx.room/relation.md). You must include `@CopyAnnotations` so Room can interpret the methods' auto-generated implementations.
 
-```kotlin
+```java
 @AutoValue
 @Entity
 public abstract class User {
