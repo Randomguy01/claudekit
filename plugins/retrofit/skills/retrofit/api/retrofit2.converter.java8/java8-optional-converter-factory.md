@@ -4,7 +4,7 @@
 
 # Java8OptionalConverterFactory
 
-Package `retrofit.converter.java8` · Artifact `com.squareup.retrofit2:converter-java8`
+Package `retrofit2.converter.java8` · Artifact `com.squareup.retrofit2:converter-java8`
 
 ```java
 @Deprecated

@@ -4,7 +4,7 @@
 
 # GuavaOptionalConverterFactory
 
-Package `retrofit.converter.guava` · Artifact `com.squareup.retrofit2:converter-guava`
+Package `retrofit2.converter.guava` · Artifact `com.squareup.retrofit2:converter-guava`
 
 ```java
 public final class GuavaOptionalConverterFactory extends retrofit2.Converter.Factory

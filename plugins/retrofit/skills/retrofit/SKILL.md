@@ -80,7 +80,7 @@ Each annotation, class, and interface has its own file. Filenames are the kebab-
 
 ### Converters (`api/retrofit2.converter.*/`)
 
-One factory per serialization library: `gson`, `moshi`, `kotlinx.serialization` (`as-converter-factory.md`), `jackson`, `protobuf`, `wire`, `scalars`, `simplexml`, `jaxb`/`jaxb3`. The two delegating optional converters live under `api/retrofit.converter.guava/` and `api/retrofit.converter.java8/`.
+One factory per serialization library: `gson`, `moshi`, `kotlinx.serialization` (`as-converter-factory.md`), `jackson`, `protobuf`, `wire`, `scalars`, `simplexml`, `jaxb`/`jaxb3`. The two delegating optional converters live under `api/retrofit2.converter.guava/` and `api/retrofit2.converter.java8/`.
 
 ### Call adapters (`api/retrofit2.adapter.*/`)
 

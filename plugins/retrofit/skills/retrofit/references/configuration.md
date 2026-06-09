@@ -37,8 +37,8 @@ Delegating converters differ from the converters above in that they don't conver
 
 Two delegating converters are provided:
 
-* [Guava's `Optional<T>`](../api/retrofit.converter.guava/guava-optional-converter-factory.md) — `com.squareup.retrofit2:converter-guava`
-* [Java 8's `Optional<T>`](../api/retrofit.converter.java8/java8-optional-converter-factory.md) — `com.squareup.retrofit2:converter-java8`
+* [Guava's `Optional<T>`](../api/retrofit2.converter.guava/guava-optional-converter-factory.md) — `com.squareup.retrofit2:converter-guava`
+* [Java 8's `Optional<T>`](../api/retrofit2.converter.java8/java8-optional-converter-factory.md) — `com.squareup.retrofit2:converter-java8`
 
 > [!NOTE]
 > Retrofit's built-in [`OptionalConverterFactory`](../api/retrofit2/optional-converter-factory.md) already handles `java.util.Optional` on the JVM and Android API 24+, so the `converter-java8` module is deprecated.
