@@ -10,15 +10,15 @@ Add converters to support other types. Sibling modules adapt popular serializati
 
 ### Built-in Converters
 
-* Gson: `com.squareup.retrofit2:converter-gson`
-* Jackson: `com.squareup.retrofit2:converter-jackson` — supports [multiple formats](https://github.com/FasterXML/jackson#data-format-modules) (JSON, XML, CBOR, YAML, etc.) by supplying a different mapper and media type
-* Moshi: `com.squareup.retrofit2:converter-moshi`
-* Protobuf: `com.squareup.retrofit2:converter-protobuf`
-* Wire: `com.squareup.retrofit2:converter-wire`
-* Simple XML: `com.squareup.retrofit2:converter-simplexml`
-* JAXB: `com.squareup.retrofit2:converter-jaxb`
-* Kotlin serialization: `com.squareup.retrofit2:converter-kotlinx-serialization`
-* Scalars (primitives, boxed, and String): `com.squareup.retrofit2:converter-scalars`
+* [Gson](../api/retrofit2.converter.gson/gson-converter-factory.md): `com.squareup.retrofit2:converter-gson`
+* [Jackson](../api/retrofit2.converter.jackson/jackson-converter-factory.md): `com.squareup.retrofit2:converter-jackson` — supports [multiple formats](https://github.com/FasterXML/jackson#data-format-modules) (JSON, XML, CBOR, YAML, etc.) by supplying a different mapper and media type
+* [Moshi](../api/retrofit2.converter.moshi/moshi-converter-factory.md): `com.squareup.retrofit2:converter-moshi`
+* [Protobuf](../api/retrofit2.converter.protobuf/proto-converter-factory.md): `com.squareup.retrofit2:converter-protobuf`
+* [Wire](../api/retrofit2.converter.wire/wire-converter-factory.md): `com.squareup.retrofit2:converter-wire`
+* [Simple XML](../api/retrofit2.converter.simplexml/simple-xml-converter-factory.md) (deprecated — prefer JAXB): `com.squareup.retrofit2:converter-simplexml`
+* [JAXB](../api/retrofit2.converter.jaxb/jaxb-converter-factory.md): `com.squareup.retrofit2:converter-jaxb` — for `jakarta.xml.bind` use [`converter-jaxb3`](../api/retrofit2.converter.jaxb3/jaxb-converter-factory.md)
+* [Kotlin serialization](../api/retrofit2.converter.kotlinx.serialization/as-converter-factory.md): `com.squareup.retrofit2:converter-kotlinx-serialization`
+* [Scalars](../api/retrofit2.converter.scalars/scalars-converter-factory.md) (primitives, boxed, and String): `com.squareup.retrofit2:converter-scalars`
 
 Pass a converter factory to the builder. The following uses `GsonConverterFactory` to deserialize the `GitHubService` responses with Gson:
 
@@ -37,8 +37,11 @@ Delegating converters differ from the converters above in that they don't conver
 
 Two delegating converters are provided:
 
-* Guava's `Optional<T>` — `com.squareup.retrofit2:converter-guava`
-* Java 8's `Optional<T>` — `com.squareup.retrofit2:converter-java8`
+* [Guava's `Optional<T>`](../api/retrofit.converter.guava/guava-optional-converter-factory.md) — `com.squareup.retrofit2:converter-guava`
+* [Java 8's `Optional<T>`](../api/retrofit.converter.java8/java8-optional-converter-factory.md) — `com.squareup.retrofit2:converter-java8`
+
+> [!NOTE]
+> Retrofit's built-in [`OptionalConverterFactory`](../api/retrofit2/optional-converter-factory.md) already handles `java.util.Optional` on the JVM and Android API 24+, so the `converter-java8` module is deprecated.
 
 ### Custom Converters
 
@@ -63,11 +66,12 @@ Retrofit is pluggable, allowing different execution mechanisms and their librari
 
 ### Built-in Call Adapters
 
-* RxJava `Observable` & `Single` — `com.squareup.retrofit2:adapter-rxjava`
-* RxJava2 `Observable`, `Flowable`, `Single`, `Completable` & `Maybe` — `com.squareup.retrofit2:adapter-rxjava2`
-* RxJava3 `Observable`, `Flowable`, `Single`, `Completable` & `Maybe` — `com.squareup.retrofit2:adapter-rxjava3`
-* Guava `ListenableFuture` — `com.squareup.retrofit2:adapter-guava`
-* Java 8 `CompletableFuture` — `com.squareup.retrofit2:adapter-java8`
+* [RxJava](../api/retrofit2.adapter.rxjava/rxjava-call-adapter-factory.md) `Observable` & `Single` — `com.squareup.retrofit2:adapter-rxjava`
+* [RxJava2](../api/retrofit2.adapter.rxjava2/rxjava2-call-adapter-factory.md) `Observable`, `Flowable`, `Single`, `Completable` & `Maybe` — `com.squareup.retrofit2:adapter-rxjava2`
+* [RxJava3](../api/retrofit2.adapter.rxjava3/rxjava3-call-adapter-factory.md) `Observable`, `Flowable`, `Single`, `Completable` & `Maybe` — `com.squareup.retrofit2:adapter-rxjava3`
+* [Guava](../api/retrofit2.adapter.guava/guava-call-adapter-factory.md) `ListenableFuture` — `com.squareup.retrofit2:adapter-guava`
+* [Java 8](../api/retrofit2.adapter.java8/java8-call-adapter-factory.md) `CompletableFuture` — `com.squareup.retrofit2:adapter-java8` (deprecated — `CompletableFuture` is supported natively)
+* [Scala](../api/retrofit2.adapter.scala/scala-call-adapter-factory.md) `Future` — `com.squareup.retrofit2:adapter-scala`
 * Kotlin `suspend` functions — no dependency needed
 
 ### Custom Call Adapters
