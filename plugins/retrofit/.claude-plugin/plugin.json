@@ -1,5 +1,5 @@
 {
   "name": "retrofit",
   "version": "0.1.0",
-  "description": "TBD"
+  "description": "Build and maintain a Retrofit HTTP client in a Java or Kotlin/Android app — typed API interfaces, request annotations, converters, call adapters, response and error handling, interceptors, and mocking — with task guides and per-type API references."
 }
