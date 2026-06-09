@@ -5,6 +5,10 @@
     "name": "Randomguy01"
   },
   "plugins": [
-
+    {
+      "name": "androidx-room",
+      "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references.",
+      "source": "./plugins/androidx-room"
+    }
   ]
 }

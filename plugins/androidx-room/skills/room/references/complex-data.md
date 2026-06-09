@@ -1,0 +1,103 @@
+# Complex Data
+
+Room provides functionality for converting between primitive and boxed types but doesn't allow for object references between entities. This document explains how to use type converters and why Room doesn't support object references.
+
+## Use Type Converters
+
+To store custom data types in a single database column, provide a *type converter*. Type converters are methods that tell Room how to convert custom types to and from known types that Room can persist. Identify type converters with the [`@TypeConverter`](../api/androidx.room/type-converter.md) annotation.
+
+> [!NOTE]
+> Room 2.3 and higher includes a default type converter for persisting enums, so you don't need to define one. Existing type converters take precedence over the default.
+
+To persist instances of `Date` in a Room database, define type converters:
+
+```kotlin
+class Converters {
+  @TypeConverter
+  fun fromTimestamp(value: Long?): Date? {
+    return value?.let { Date(it) }
+  }
+
+  @TypeConverter
+  fun dateToTimestamp(date: Date?): Long? {
+    return date?.time?.toLong()
+  }
+}
+```
+
+This example defines two type converter methods: one that converts a `Date` object to a `Long` object, and one that performs the inverse conversion from `Long` to `Date`. Because Room knows how to persist `Long` objects, it can use these converters to persist `Date` objects.
+
+Next, add the [`@TypeConverters`](../api/androidx.room/type-converters.md) annotation to the `AppDatabase` class so Room knows about the converter class you defined:
+
+```kotlin
+@Database(entities = [User::class], version = 1)
+@TypeConverters(Converters::class)
+abstract class AppDatabase : RoomDatabase() {
+  abstract fun userDao(): UserDao
+}
+```
+
+Use your custom type in your entities and DAOs just as you would use primitive types:
+
+```kotlin
+@Entity
+data class User(private val birthday: Date?)
+
+@Dao
+interface UserDao {
+  @Query("SELECT * FROM user WHERE birthday = :targetDate")
+  fun findUsersBornOnDate(targetDate: Date): List<User>
+}
+```
+
+In this example, Room uses the type converter everywhere because `AppDatabase` is annotated with `@TypeConverters`. To scope a converter to specific entities or DAOs instead, annotate those `@Entity` or `@Dao` classes with `@TypeConverters`.
+
+### Control Type Converter Initialization
+
+Ordinarily, Room instantiates type converters for you. To pass additional dependencies to a converter — which requires your app to control initialization — annotate the converter class with [`@ProvidedTypeConverter`](../api/androidx.room/provided-type-converter.md):
+
+```kotlin
+@ProvidedTypeConverter
+class ExampleConverter {
+  @TypeConverter
+  fun stringToExample(string: String?): ExampleType? {
+    ...
+  }
+
+  @TypeConverter
+  fun exampleToString(example: ExampleType?): String? {
+    ...
+  }
+}
+```
+
+Then, in addition to declaring your converter class in `@TypeConverters`, use the [`RoomDatabase.Builder.addTypeConverter()`](../api/androidx.room/database.md) method to pass an instance of your converter class to the `RoomDatabase` builder:
+
+```kotlin
+val db = Room.databaseBuilder(...)
+  .addTypeConverter(exampleConverterInstance)
+  .build()
+```
+
+## Understand Why Room Doesn't Allow Object References
+
+> [!IMPORTANT]
+> Room disallows object references between entity classes. Instead, you must explicitly request the data your app needs.
+
+Mapping relationships from a database to the respective object model is a common practice and works very well on the server side. Even when the program loads fields as they're accessed, the server still performs well.
+
+However, on the client side, this type of lazy loading isn't feasible because it usually occurs on the UI thread, and querying information on disk in the UI thread creates significant performance problems. The UI thread typically has about 16 ms to calculate and draw an activity's updated layout, so even if a query takes only 5 ms, it's still likely that your app will run out of time to draw the frame, causing noticeable visual glitches. The query could take even more time to complete if there's a separate transaction running in parallel, or if the device is running other disk-intensive tasks. If you don't use lazy loading, however, your app fetches more data than it needs, creating memory consumption problems.
+
+Object-relational mappings usually leave this decision to developers so that they can do whatever is best for their app's use cases. Developers usually decide to share the model between their app and the UI. This solution doesn't scale well, however, because as the UI changes over time, the shared model creates problems that are difficult for developers to anticipate and debug.
+
+For example, consider a UI that loads a list of `Book` objects, with each book having an `Author` object. You might initially design your queries to use lazy loading to have instances of `Book` retrieve the author. The first retrieval of the `author` field queries the database. Some time later, you realize that you need to display the author name in your app's UI, as well. You can access this name easily enough, as shown in the following code snippet:
+
+```kotlin
+authorNameTextView.text = book.author.name
+```
+
+However, this seemingly innocent change causes the `Author` table to be queried on the main thread.
+
+If you query author information ahead of time, it becomes difficult to change how data is loaded if you no longer need that data. For example, if your app's UI no longer needs to display `Author` information, your app effectively loads data that it no longer displays, wasting valuable memory space. Your app's efficiency degrades even further if the `Author` class references another table, such as `Books`.
+
+To reference multiple entities at the same time using Room, create a POJO that contains each entity, then write a query that joins the corresponding tables (see [Relationships](relationship-overview.md)). This well-structured model, combined with Room's query validation, lets your app consume fewer resources when loading data, improving performance and user experience.
