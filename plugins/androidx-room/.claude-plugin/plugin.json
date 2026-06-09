@@ -1,4 +1,4 @@
 {
   "name": "androidx-room",
-  "description": "Android Room Database. Use this skill when..."
+  "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references."
 }
