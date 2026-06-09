@@ -1,4 +1,5 @@
 {
   "name": "androidx-room",
+  "version": "0.1.0",
   "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references."
 }
