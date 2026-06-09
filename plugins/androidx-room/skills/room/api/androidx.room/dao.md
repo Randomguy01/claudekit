@@ -20,7 +20,7 @@ The class marked with `@Dao` should either be an interface or an abstract class.
 
 An abstract `@Dao` class can optionally have a constructor that takes a [Database](database.md) as its only parameter.
 
-It is recommended to have multiple `Dao` classes in your codebase depending on the tables they touch.  
+It is recommended to have multiple `Dao` classes in your codebase depending on the tables they touch.
 
 |      See also       |
 |---------------------|

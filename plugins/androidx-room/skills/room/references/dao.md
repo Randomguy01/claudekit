@@ -4,7 +4,7 @@ Data access objects (DAOs) contain the methods that access the database. Room ge
 
 ## Defining a DAO
 
-- Define each DAO as either an interface (preferred) or an abstract class. 
+- Define each DAO as either an interface (preferred) or an abstract class.
 - You must annotate it with [`@Dao`](../api/androidx.room/dao.md).
 
 ```kotlin

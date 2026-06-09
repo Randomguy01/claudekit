@@ -44,14 +44,14 @@ There are 4 type of statements supported in `Query` methods: SELECT, INSERT, UPD
 ### SELECT
 
 Room will infer the result contents from the method's return type and generate the code that will automatically convert the query result into the method's return type.
-- For single result queries, the return type can be any data object/class 
-- For queries that return multiple values, use `java.util.List` or `Array` 
+- For single result queries, the return type can be any data object/class
+- For queries that return multiple values, use `java.util.List` or `Array`
 - any query may return `android.database.Cursor`
 - any query result can be wrapped in a `androidx.lifecycle.LiveData`
 
 ### INSERT
 
-Queries can return `void` or `Long`. 
+Queries can return `void` or `Long`.
 
 If it is a `Long`, the value is the SQLite rowid of the row inserted by this query.
 

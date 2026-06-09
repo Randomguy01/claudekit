@@ -14,7 +14,7 @@ annotation Update
 
 Marks a method in a [`Dao`](dao.md) annotated class as an update method.
 
-The generated implementation of the method will update its parameters in the database only if they already exist (by primary keys). 
+The generated implementation of the method will update its parameters in the database only if they already exist (by primary keys).
 
 All of the parameters of the Update method must either be classes annotated with [`Entity`](entity.md) or collections/array of it.
 

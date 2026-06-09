@@ -93,7 +93,7 @@ List of indices on the table.
 val inheritSuperIndices: Boolean
 ```
 
-If set to `true`, this `Entity` will inherit indices from parent classes. 
+If set to `true`, this `Entity` will inherit indices from parent classes.
 
 **Setting this to true will override any parent entities with `inheritSuperIndices = false`**
 

@@ -4,7 +4,7 @@ Each entity corresponds to a table in the Room database, and each instance repre
 
 ## Defining an Entity
 
-- Define each Room entity as a class annotated with [`@Entity`](../api/androidx.room/entity.md). 
+- Define each Room entity as a class annotated with [`@Entity`](../api/androidx.room/entity.md).
 - A Room entity includes fields for each column in the table, including one or more columns that make up the [primary key](../api/androidx.room/primary-key.md).
 
 ```kotlin
@@ -132,7 +132,7 @@ data class User(
 )
 ```
 
-Enforce uniqueness by setting the `unique` property of an [`@Index`](../api/androidx.room/index.md) annotation to `true`. 
+Enforce uniqueness by setting the `unique` property of an [`@Index`](../api/androidx.room/index.md) annotation to `true`.
 ```kotlin
 @Entity(indices = [Index(value = ["first_name", "last_name"], unique = true)])
 data class User(

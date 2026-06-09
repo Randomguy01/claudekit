@@ -33,7 +33,7 @@ abstract class MusicDatabase : RoomDatabase {
 
 **There is no limit on the number of [Entity](entity.md) or [Dao](dao.md) classes but they must be unique within the Database**
 
-Create [Dao](dao.md) classes instead of running queries on the database directly. Dao classes will allow you to abstract the database communication, which will be much easier to mock in tests. It automatically converts `Cursor` to your application data classes. 
+Create [Dao](dao.md) classes instead of running queries on the database directly. Dao classes will allow you to abstract the database communication, which will be much easier to mock in tests. It automatically converts `Cursor` to your application data classes.
 
 **Room verifies all queries in the [Dao](dao.md) classes at compile time**
 
