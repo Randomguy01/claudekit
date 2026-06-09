@@ -9,11 +9,6 @@
       "name": "androidx-room",
       "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references.",
       "source": "./plugins/androidx-room"
-    },
-    {
-      "name": "fetch-dac-docs",
-      "description": "Fetch and distill developer.android.com documentation pages into clean Markdown reference files",
-      "source": "./plugins/fetch-dac-docs"
     }
   ]
 }
