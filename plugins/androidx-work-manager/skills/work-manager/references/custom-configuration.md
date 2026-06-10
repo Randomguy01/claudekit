@@ -8,7 +8,7 @@ On-demand initialization creates WorkManager only when the component is needed, 
 
 ### Remove the Default Initializer
 
-To provide your own configuration, first remove the default initializer by updating [`AndroidManifest.xml`](https://developer.android.com/guide/topics/manifest/manifest-intro) with the merge rule `tools:node="remove"`.
+To provide your own configuration, first remove the default initializer by updating `AndroidManifest.xml` with the merge rule `tools:node="remove"`.
 
 **Requires WorkManager 2.6+** — WorkManager uses [App Startup](https://developer.android.com/topic/libraries/app-startup) internally, so remove the `androidx.startup` node.
 
@@ -91,6 +91,6 @@ val myConfig = Configuration.Builder()
 WorkManager.initialize(this, myConfig)
 ```
 
-Run the [`WorkManager`](../api/androidx.work/work-manager.md) singleton's initialization in either [`Application.onCreate()`](https://developer.android.com/reference/android/app/Application#onCreate()) or [`ContentProvider.onCreate()`](https://developer.android.com/reference/android/content/ContentProvider#onCreate()).
+Run the [`WorkManager`](../api/androidx.work/work-manager.md) singleton's initialization in either `Application.onCreate()` or `ContentProvider.onCreate()`.
 
 For the complete list of customizations, see the [`Configuration.Builder()`](../api/androidx.work/configuration-builder.md) reference.

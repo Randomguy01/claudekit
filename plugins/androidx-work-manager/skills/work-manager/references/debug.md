@@ -32,7 +32,7 @@ With `DEBUG` logging enabled, you see many more logs with the log-tag prefix `WM
 
 ## Inspect Scheduled Jobs with dumpsys
 
-**Requires Android 6.0 (API level 23)+** — use `adb` to inspect job scheduling. (New to `adb`? See [Command-line tools](https://developer.android.com/studio/command-line).)
+**Requires Android 6.0 (API level 23)+** — use `adb` to inspect job scheduling.
 
 List the jobs attributed to your package:
 

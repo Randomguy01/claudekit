@@ -8,7 +8,7 @@ Add the WorkManager dependencies to your project — see [Installing WorkManager
 
 ## From JobService to Workers
 
-[`FirebaseJobDispatcher`](https://github.com/googlearchive/firebase-jobdispatcher-android/blob/e609dabf6cbd0fcc2451b8515f095cfbc3d9450a/jobdispatcher/src/main/java/com/firebase/jobdispatcher/FirebaseJobDispatcher.java) uses a subclass of [`JobService`](https://github.com/firebase/firebase-jobdispatcher-android/blob/master/jobdispatcher/src/main/java/com/firebase/jobdispatcher/JobService.java) as the entry point for defining work. You might use `JobService` directly or use [`SimpleJobService`](https://github.com/firebase/firebase-jobdispatcher-android/blob/master/jobdispatcher/src/main/java/com/firebase/jobdispatcher/SimpleJobService.java).
+`FirebaseJobDispatcher` uses a subclass of `JobService` as the entry point for defining work. You might use `JobService` directly or use `SimpleJobService`.
 
 A `JobService` looks like this:
 
@@ -60,7 +60,7 @@ class MyWorker(appContext: Context, params: WorkerParameters) :
 }
 ```
 
-Like `JobService.onStartJob()`, `startWork()` is called on the main thread. It returns a [`ListenableFuture`](https://guava.dev/releases/snapshot-jre/api/docs/com/google/common/util/concurrent/ListenableFuture.html) that signals work completion *asynchronously*, so choose your own threading strategy. The `ListenableFuture` eventually returns a [`ListenableWorker.Result`](../api/androidx.work/listenable-worker-result.md), one of `Result.success()`, `Result.success(Data)`, `Result.retry()`, `Result.failure()`, or `Result.failure(Data)`.
+Like `JobService.onStartJob()`, `startWork()` is called on the main thread. It returns a `ListenableFuture` that signals work completion *asynchronously*, so choose your own threading strategy. The `ListenableFuture` eventually returns a [`ListenableWorker.Result`](../api/androidx.work/listenable-worker-result.md), one of `Result.success()`, `Result.success(Data)`, `Result.retry()`, `Result.failure()`, or `Result.failure(Data)`.
 
 `onStopped()` signals that the worker must stop — because its constraints are no longer met (for example, the network is gone), because a `WorkManager.cancel...()` method was called, or because the OS shut the work down.
 

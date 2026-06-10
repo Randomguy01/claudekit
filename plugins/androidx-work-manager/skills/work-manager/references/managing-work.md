@@ -80,9 +80,9 @@ workManager.getWorkInfosForUniqueWork("sync") // ListenableFuture<List<WorkInfo>
 workManager.getWorkInfosByTag("syncTag") // ListenableFuture<List<WorkInfo>>
 ```
 
-The query returns a [`ListenableFuture`](https://guava.dev/releases/23.1-android/api/docs/com/google/common/util/concurrent/ListenableFuture.html) of a [`WorkInfo`](../api/androidx.work/work-info.md) object, which includes the `id` of the work, its tags, its current [`State`](../api/androidx.work/work-info-state.md), and any output data set using [`Result.success(outputData)`](../api/androidx.work/listenable-worker-result.md).
+The query returns a `ListenableFuture` of a [`WorkInfo`](../api/androidx.work/work-info.md) object, which includes the `id` of the work, its tags, its current [`State`](../api/androidx.work/work-info-state.md), and any output data set using [`Result.success(outputData)`](../api/androidx.work/listenable-worker-result.md).
 
-The [`LiveData`](https://developer.android.com/topic/libraries/architecture/livedata) and [`Flow`](https://developer.android.com/kotlin/flow) variants of each method let you *observe changes to the `WorkInfo`* by registering a listener. For example, to display a message when work finishes successfully:
+The `LiveData` and `Flow` variants of each method let you *observe changes to the `WorkInfo`* by registering a listener. For example, to display a message when work finishes successfully:
 
 ```kotlin
 workManager.getWorkInfoByIdFlow(syncWorker.id)

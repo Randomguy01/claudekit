@@ -103,7 +103,7 @@ WorkManager.getInstance().enqueue(uploadTask)
 Set GCMNetworkManager constraints by calling the task Builder's methods (for example, `Task.Builder.setRequiredNetwork()`). In WorkManager, create a [`Constraints.Builder`](../api/androidx.work/constraints-builder.md), call its methods (for example, [`Constraints.Builder.setRequiredNetworkType()`](../api/androidx.work/constraints-builder.md)), and attach the resulting `Constraints` to the work request. See [Work constraints](define-work-requests.md#work-constraints).
 
 > [!NOTE]
-> GCMNetworkManager lets you specify an execution window; WorkManager has no equivalent. To run work at a precise time, use another option such as [`AlarmManager`](https://developer.android.com/reference/android/app/AlarmManager).
+> GCMNetworkManager lets you specify an execution window; WorkManager has no equivalent. To run work at a precise time, use another option such as `AlarmManager`.
 
 | GCMNetworkManager constraint | WorkManager equivalent | Notes |
 |---|---|---|
