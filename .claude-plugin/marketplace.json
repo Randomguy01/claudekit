@@ -14,6 +14,11 @@
       "name": "androidx-work-manager",
       "description": "Schedule persistent, deferrable background work on Android with Jetpack WorkManager — WorkRequests and Workers, constraints, retry and backoff, expedited and long-running work, periodic work, and chaining — with task guides and per-type API references.",
       "source": "./plugins/androidx-work-manager"
+    },
+    {
+      "name": "retrofit",
+      "description": "Build and maintain a Retrofit HTTP client in a Java or Kotlin/Android app — typed API interfaces, request annotations, converters, call adapters, response and error handling, interceptors, and mocking — with task guides and per-type API references.",
+      "source": "./plugins/retrofit"
     }
   ]
 }
