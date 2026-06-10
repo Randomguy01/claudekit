@@ -9,6 +9,11 @@
       "name": "androidx-room",
       "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references.",
       "source": "./plugins/androidx-room"
+    },
+    {
+      "name": "androidx-work-manager",
+      "description": "Schedule persistent, deferrable background work on Android with Jetpack WorkManager — WorkRequests and Workers, constraints, retry and backoff, expedited and long-running work, periodic work, and chaining — with task guides and per-type API references.",
+      "source": "./plugins/androidx-work-manager"
     }
   ]
 }
