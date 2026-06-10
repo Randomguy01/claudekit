@@ -1,0 +1,5 @@
+{
+  "name": "androidx-work-manager",
+  "version": "0.1.0",
+  "description": "Schedule persistent, deferrable background work on Android with Jetpack WorkManager — WorkRequests and Workers, constraints, retry and backoff, expedited and long-running work, periodic work, and chaining — with task guides and per-type API references."
+}
