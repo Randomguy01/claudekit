@@ -100,7 +100,7 @@ This skill is a router. Decide what the task needs, then read the matching file 
 
 ## API references (`api/`)
 
-Each class, interface, and enum has its own file. Filenames are the kebab-case form of the type name (`OneTimeWorkRequest` → `one-time-work-request.md`, `Constraints.Builder` → `constraints-builder.md`). Run `ls api/androidx.work/` to discover the full set.
+Each class, interface, and enum has its own file. Filenames are the kebab-case form of the type name (`OneTimeWorkRequest` → `one-time-work-request.md`, `Constraints.Builder` → `constraints-builder.md`). Each package lives in its own sibling directory under `api/` — run `ls api/` to discover the subpackages and `ls api/<package>/` for the full set within one.
 
 Some primary types to start from:
 
@@ -111,7 +111,11 @@ Some primary types to start from:
 - `api/androidx.work/data.md` — input and output payloads
 - `api/androidx.work/work-info.md` — observed state of a work request
 
-The `api/` tree only covers the `androidx.work` package. Types in `androidx.work.testing` (such as `TestWorkerBuilder` and `WorkManagerTestInitHelper`) and `androidx.work.multiprocess` (such as `RemoteCoroutineWorker`) have no local files — references to them link out to the Android developer site.
+The `api/` tree covers three packages, each in its own directory:
+
+- `api/androidx.work/` — the core package (`WorkManager`, `Worker`, `WorkRequest`, `Constraints`, `Data`, and the rest).
+- `api/androidx.work.testing/` — test helpers such as `TestWorkerBuilder`, `TestListenableWorkerBuilder`, `WorkManagerTestInitHelper`, and `TestDriver`.
+- `api/androidx.work.multiprocess/` — multi-process types such as `RemoteCoroutineWorker` and `RemoteListenableWorker`.
 
 ## Replace Deprecated APIs
 
