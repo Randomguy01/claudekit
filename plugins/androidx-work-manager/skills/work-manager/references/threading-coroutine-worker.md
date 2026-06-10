@@ -38,7 +38,7 @@ class CoroutineDownloadWorker(
 
 ## Running a CoroutineWorker in a Different Process
 
-Bind a worker to a specific process using [`RemoteCoroutineWorker`](https://developer.android.com/reference/kotlin/androidx/work/multiprocess/RemoteCoroutineWorker), an implementation of [`ListenableWorker`](../api/androidx.work/listenable-worker.md).
+Bind a worker to a specific process using [`RemoteCoroutineWorker`](../api/androidx.work.multiprocess/remote-coroutine-worker.md), an implementation of [`ListenableWorker`](../api/androidx.work/listenable-worker.md).
 
 > [!NOTE]
 > `RemoteCoroutineWorker` and `RemoteWorkerService` live in the `androidx.work:work-multiprocess` artifact (see [Installing WorkManager](install.md)).

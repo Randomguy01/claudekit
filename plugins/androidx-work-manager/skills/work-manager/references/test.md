@@ -18,7 +18,7 @@ class SleepWorker(context: Context, parameters: WorkerParameters) :
 }
 ```
 
-To test it, use [`TestWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestWorkerBuilder), which builds instances of `Worker` for testing business logic:
+To test it, use [`TestWorkerBuilder`](../api/androidx.work.testing/test-worker-builder.md), which builds instances of `Worker` for testing business logic:
 
 ```kotlin
 @RunWith(AndroidJUnit4::class)
@@ -80,11 +80,11 @@ fun testSleepWorker() {
 }
 ```
 
-For more details on the `TestWorkerBuilder` API, see the reference for [`TestListenableWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestListenableWorkerBuilder), its superclass.
+For more details on the `TestWorkerBuilder` API, see the reference for [`TestListenableWorkerBuilder`](../api/androidx.work.testing/test-listenable-worker-builder.md), its superclass.
 
 ## Testing ListenableWorker and its Variants
 
-To test a [`ListenableWorker`](../api/androidx.work/listenable-worker.md) or its variants ([`CoroutineWorker`](../api/androidx.work/coroutine-worker.md) and [`RxWorker`](../api/androidx.work/rx-worker.md)), use [`TestListenableWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestListenableWorkerBuilder). Unlike `TestWorkerBuilder`, which lets you specify the background `Executor` that runs the `Worker`, `TestListenableWorkerBuilder` relies on the threading logic of the `ListenableWorker` implementation.
+To test a [`ListenableWorker`](../api/androidx.work/listenable-worker.md) or its variants ([`CoroutineWorker`](../api/androidx.work/coroutine-worker.md) and [`RxWorker`](../api/androidx.work/rx-worker.md)), use [`TestListenableWorkerBuilder`](../api/androidx.work.testing/test-listenable-worker-builder.md). Unlike `TestWorkerBuilder`, which lets you specify the background `Executor` that runs the `Worker`, `TestListenableWorkerBuilder` relies on the threading logic of the `ListenableWorker` implementation.
 
 For example, to test this `CoroutineWorker`:
 

@@ -18,14 +18,14 @@ dependencies {
 For more on adding dependencies, see the declaring-dependencies section in the [WorkManager release notes](https://developer.android.com/jetpack/androidx/releases/work#declaring_dependencies).
 
 > [!NOTE]
-> Beginning with 2.1.0, [`TestWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestWorkerBuilder) and [`TestListenableWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestListenableWorkerBuilder) let you test the business logic in your workers without initializing WorkManager with `WorkManagerTestInitHelper`. See [Testing Worker implementations](test.md). The material on this page is still useful when you need integration tests.
+> Beginning with 2.1.0, [`TestWorkerBuilder`](../api/androidx.work.testing/test-worker-builder.md) and [`TestListenableWorkerBuilder`](../api/androidx.work.testing/test-listenable-worker-builder.md) let you test the business logic in your workers without initializing WorkManager with `WorkManagerTestInitHelper`. See [Testing Worker implementations](test.md). The material on this page is still useful when you need integration tests.
 
 > [!TIP]
-> Use [`TestListenableWorkerBuilder`](https://developer.android.com/reference/androidx/work/testing/TestListenableWorkerBuilder) to test [`CoroutineWorker`](../api/androidx.work/coroutine-worker.md) implementations: the `work-testing` artifact uses `Dispatchers.Default` rather than your worker's own `CoroutineDispatcher`. See [Testing ListenableWorker and its variants](test.md#testing-listenableworker-and-its-variants).
+> Use [`TestListenableWorkerBuilder`](../api/androidx.work.testing/test-listenable-worker-builder.md) to test [`CoroutineWorker`](../api/androidx.work/coroutine-worker.md) implementations: the `work-testing` artifact uses `Dispatchers.Default` rather than your worker's own `CoroutineDispatcher`. See [Testing ListenableWorker and its variants](test.md#testing-listenableworker-and-its-variants).
 
 ## Concepts
 
-`work-testing` provides a special test-mode implementation of WorkManager, initialized with [`WorkManagerTestInitHelper`](https://developer.android.com/reference/androidx/work/testing/WorkManagerTestInitHelper). It also provides a [`SynchronousExecutor`](https://developer.android.com/reference/androidx/work/testing/SynchronousExecutor), which makes it easier to write tests synchronously without dealing with multiple threads, locks, or latches.
+`work-testing` provides a special test-mode implementation of WorkManager, initialized with [`WorkManagerTestInitHelper`](../api/androidx.work.testing/work-manager-test-init-helper.md). It also provides a [`SynchronousExecutor`](../api/androidx.work.testing/synchronous-executor.md), which makes it easier to write tests synchronously without dealing with multiple threads, locks, or latches.
 
 Using these classes together:
 
@@ -113,7 +113,7 @@ fun testEchoWorkerNoInput() {
 
 ## Simulate Constraints, Delays, and Periodic Work
 
-`WorkManagerTestInitHelper` provides a [`TestDriver`](https://developer.android.com/reference/androidx/work/testing/TestDriver) that simulates initial delay, met constraints for `ListenableWorker` instances, and intervals for `PeriodicWorkRequest` instances.
+`WorkManagerTestInitHelper` provides a [`TestDriver`](../api/androidx.work.testing/test-driver.md) that simulates initial delay, met constraints for `ListenableWorker` instances, and intervals for `PeriodicWorkRequest` instances.
 
 ### Test Initial Delays
 

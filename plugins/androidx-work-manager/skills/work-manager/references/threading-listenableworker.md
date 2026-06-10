@@ -49,7 +49,7 @@ completer.addCancellationListener(cancelDownloadsRunnable, executor)
 
 ## Running a ListenableWorker in a Different Process
 
-Bind a worker to a specific process using [`RemoteListenableWorker`](https://developer.android.com/reference/kotlin/androidx/work/multiprocess/RemoteListenableWorker), an implementation of `ListenableWorker`.
+Bind a worker to a specific process using [`RemoteListenableWorker`](../api/androidx.work.multiprocess/remote-listenable-worker.md), an implementation of `ListenableWorker`.
 
 > [!NOTE]
 > `RemoteListenableWorker` and `RemoteWorkerService` live in the `androidx.work:work-multiprocess` artifact (see [Installing WorkManager](install.md)).
