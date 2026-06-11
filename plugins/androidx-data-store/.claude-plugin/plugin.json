@@ -1,0 +1,5 @@
+{
+  "name": "androidx-data-store",
+  "version": "0.1.0",
+  "description": "Store key-value pairs or typed objects on Android with Jetpack DataStore — Preferences, Proto, and JSON configurations, Compose and multi-process usage, and corruption handling — with task guides and per-type API references."
+}
