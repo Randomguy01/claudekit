@@ -4,7 +4,7 @@
 
 Run [versions.sh](../scripts/versions.sh) to get the latest stable version of an artifact group, or `versions.sh --all <artifact>` to list every published version. Default to the latest stable version unless instructed otherwise.
 
-There are three independent version lines — query each separately:
+There are four independent version lines — query each separately:
 
 - `versions.sh hilt` — the Dagger Hilt artifacts (`com.google.dagger:*`).
 - `versions.sh hilt-plugin` — the `com.google.dagger.hilt.android` Gradle plugin.
