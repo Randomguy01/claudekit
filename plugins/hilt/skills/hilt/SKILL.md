@@ -50,7 +50,7 @@ This skill is a router. Decide what the task needs, then read the matching refer
 
 The `references/` guides above are the task-oriented entry points. For the exact contract of a single annotation, interface, or class — its declaration, elements/methods, and defaults — read the matching file under `api/`. Each type has its own file whose name is the kebab-case form of the type name (`@HiltAndroidApp` → `hilt-android-app.md`, `@AndroidEntryPoint` → `android-entry-point.md`); nested types join parent and child (`Component.Builder` → `component-builder.md`). Every package lives in its own sibling directory named for its dotted package — run `ls api/` to see them and `ls api/<package>/` for the types within one.
 
-These come from the [Dagger Javadoc](https://dagger.dev/api/latest/), so declarations and code examples are Java (not Kotlin).
+Most come from the [Dagger Javadoc](https://dagger.dev/api/latest/), so their declarations and code examples are Java (not Kotlin). The `androidx.hilt.*` packages instead come from the [AndroidX Hilt reference](https://developer.android.com/reference/androidx/hilt/packages) and are Kotlin. In those packages, each `@Composable` function has its own file with a `.composable.md` extension (`hiltViewModel` → `hilt-view-model.composable.md`) to avoid colliding with a same-named type, while plain top-level functions are grouped in `package-functions.md`.
 
 Some primary types to start from:
 
@@ -58,6 +58,8 @@ Some primary types to start from:
 - `api/dagger/module.md`, `api/dagger/binds.md`, `api/dagger/provides.md` — declare bindings
 - `api/dagger.hilt/install-in.md`, `api/dagger.hilt.components/singleton-component.md` — choose where a module/binding lives
 - `api/dagger.hilt.android.lifecycle/hilt-view-model.md` — inject a `ViewModel`
+- `api/androidx.hilt.lifecycle.viewmodel.compose/hilt-view-model.composable.md` — obtain a Hilt `ViewModel` from Compose (`hiltViewModel()`)
+- `api/androidx.hilt.work/hilt-worker.md`, `api/androidx.hilt.work/hilt-worker-factory.md` — inject a `Worker` (`@HiltWorker`, `HiltWorkerFactory`)
 - `api/dagger.hilt.android.testing/hilt-android-test.md`, `api/dagger.hilt.android.testing/bind-value.md` — instrumented Hilt tests
 
 The `api/` tree covers these packages, each in its own directory:
@@ -76,6 +78,12 @@ The `api/` tree covers these packages, each in its own directory:
 - `api/dagger.hilt.migration/` — `@AliasOf`, `@DisableInstallInCheck`.
 - `api/dagger.hilt.testing/` — `@TestInstallIn`.
 - `api/dagger.hilt.android.testing/` — Android test helpers (`@HiltAndroidTest`, `HiltAndroidRule`, `@BindValue`, `@UninstallModules`, …).
+
+These `androidx.hilt.*` packages are the AndroidX Jetpack integrations (Kotlin):
+
+- `api/androidx.hilt.lifecycle.viewmodel/` — `HiltViewModelFactory` factory function (`package-functions.md`).
+- `api/androidx.hilt.lifecycle.viewmodel.compose/` — Compose helpers `hiltViewModel()` and `rememberHiltViewModelFactory()`.
+- `api/androidx.hilt.work/` — WorkManager integration (`@HiltWorker`, `HiltWorkerFactory`).
 
 ## Hilt and Dagger
 
