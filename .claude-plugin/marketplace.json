@@ -21,6 +21,11 @@
       "source": "./plugins/androidx-work-manager"
     },
     {
+      "name": "hilt",
+      "description": "TODO",
+      "source": "./plugins/hilt"
+    },
+    {
       "name": "retrofit",
       "description": "Build and maintain a Retrofit HTTP client in a Java or Kotlin/Android app — typed API interfaces, request annotations, converters, call adapters, response and error handling, interceptors, and mocking — with task guides and per-type API references.",
       "source": "./plugins/retrofit"
