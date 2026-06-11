@@ -22,7 +22,7 @@
     },
     {
       "name": "hilt",
-      "description": "TODO",
+      "description": "Set up and use Hilt for dependency injection on Android — the @HiltAndroidApp Application, @AndroidEntryPoint injection, @Module bindings with @Binds/@Provides, qualifiers, component scopes, multi-module setups, ViewModel/Navigation/WorkManager integrations, and testing — with task-oriented reference guides.",
       "source": "./plugins/hilt"
     },
     {
