@@ -33,7 +33,7 @@ DataStore provides ACID guarantees, is thread-safe, and is non-blocking. It addr
 ### updateData
 
 ```
-suspend fun updateData(transform: suspend (t) -> T): T
+suspend fun updateData(transform: suspend (t: T) -> T): T
 ```
 
 Updates the data transactionally in an atomic read-modify-write operation. All operations are serialized, and the transform itself is a coroutine, so it can perform heavy work such as RPCs.
