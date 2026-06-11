@@ -46,6 +46,37 @@ This skill is a router. Decide what the task needs, then read the matching refer
 
 - Test Hilt code (unit tests, instrumented `@HiltAndroidTest`, replacing bindings with `@BindValue` / `@TestInstallIn`) → `references/testing.md`
 
+## API references (`api/`)
+
+The `references/` guides above are the task-oriented entry points. For the exact contract of a single annotation, interface, or class — its declaration, elements/methods, and defaults — read the matching file under `api/`. Each type has its own file whose name is the kebab-case form of the type name (`@HiltAndroidApp` → `hilt-android-app.md`, `@AndroidEntryPoint` → `android-entry-point.md`); nested types join parent and child (`Component.Builder` → `component-builder.md`). Every package lives in its own sibling directory named for its dotted package — run `ls api/` to see them and `ls api/<package>/` for the types within one.
+
+These come from the [Dagger Javadoc](https://dagger.dev/api/latest/), so declarations and code examples are Java (not Kotlin).
+
+Some primary types to start from:
+
+- `api/dagger.hilt.android/hilt-android-app.md`, `api/dagger.hilt.android/android-entry-point.md` — mark the `Application` and the Android classes Hilt injects into
+- `api/dagger/module.md`, `api/dagger/binds.md`, `api/dagger/provides.md` — declare bindings
+- `api/dagger.hilt/install-in.md`, `api/dagger.hilt.components/singleton-component.md` — choose where a module/binding lives
+- `api/dagger.hilt.android.lifecycle/hilt-view-model.md` — inject a `ViewModel`
+- `api/dagger.hilt.android.testing/hilt-android-test.md`, `api/dagger.hilt.android.testing/bind-value.md` — instrumented Hilt tests
+
+The `api/` tree covers these packages, each in its own directory:
+
+- `api/dagger/` — Dagger core (`@Module`, `@Binds`, `@Provides`, `@Component`, `@Subcomponent`, `Lazy`, `MembersInjector`, …).
+- `api/dagger.assisted/` — assisted injection (`@Assisted`, `@AssistedInject`, `@AssistedFactory`).
+- `api/dagger.multibindings/` — multibinding (`@IntoSet`, `@IntoMap`, `@ElementsIntoSet`, map-key annotations).
+- `api/dagger.hilt/` — Hilt core (`@InstallIn`, `@EntryPoint`, `EntryPoints`, `@DefineComponent`, …).
+- `api/dagger.hilt.components/` — `SingletonComponent`.
+- `api/dagger.hilt.android/` — Android entry points and lifecycles (`@HiltAndroidApp`, `@AndroidEntryPoint`, `ActivityRetainedLifecycle`, …).
+- `api/dagger.hilt.android.components/` — the generated Android component interfaces (`ActivityComponent`, `FragmentComponent`, …).
+- `api/dagger.hilt.android.lifecycle/` — `@HiltViewModel`, `RetainedLifecycle`.
+- `api/dagger.hilt.android.scopes/` — scope annotations (`@ActivityScoped`, `@ViewModelScoped`, …).
+- `api/dagger.hilt.android.qualifiers/` — `@ApplicationContext`, `@ActivityContext`.
+- `api/dagger.hilt.android.migration/` — Dagger-interop helpers (`@CustomInject`, `@OptionalInject`).
+- `api/dagger.hilt.migration/` — `@AliasOf`, `@DisableInstallInCheck`.
+- `api/dagger.hilt.testing/` — `@TestInstallIn`.
+- `api/dagger.hilt.android.testing/` — Android test helpers (`@HiltAndroidTest`, `HiltAndroidRule`, `@BindValue`, `@UninstallModules`, …).
+
 ## Hilt and Dagger
 
 Hilt's goals are to create a standard set of components and scopes (easing setup, readability, and code sharing across apps) and to make it easy to provision different bindings for different build types (test, debug, release).
