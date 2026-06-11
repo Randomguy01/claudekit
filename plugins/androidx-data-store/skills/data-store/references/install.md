@@ -5,7 +5,17 @@
 Run [versions.sh](../scripts/versions.sh) to get the latest stable version, or `versions.sh --all` to list every published version.
 Default to the latest stable version unless instructed otherwise.
 
-All `androidx.datastore:*` artifacts share the same version. The third-party serialization libraries (kotlinx.serialization, Protocol Buffers) are versioned independently — use the latest stable release of each.
+All `androidx.datastore:*` artifacts share the same version. The third-party serialization libraries (kotlinx.serialization, Protocol Buffers) are versioned independently — pass an artifact name to query each one:
+
+| Pinned dependency | `versions.sh` argument |
+| --- | --- |
+| `androidx.datastore:*` | `versions.sh` (default) |
+| `org.jetbrains.kotlinx:kotlinx-serialization-json` | `versions.sh kotlinx-serialization-json` |
+| `org.jetbrains.kotlin.plugin.serialization` (Gradle plugin) | `versions.sh kotlin-serialization-plugin` |
+| `com.google.protobuf:protobuf-kotlin-lite` (and `protoc`) | `versions.sh protobuf` |
+| `com.google.protobuf` (Gradle plugin) | `versions.sh protobuf-plugin` |
+
+The kotlin-serialization-plugin version tracks the Kotlin version, and `protoc` shares the `protobuf` version. Add `--all` to any of these to list every published version.
 
 ## Dependencies (app-level)
 
@@ -49,7 +59,7 @@ A typed DataStore needs a serializer. Add the dependency for the format you seri
 - Plugin: `com.google.protobuf`
 - `com.google.protobuf:protobuf-kotlin-lite`
 
-Protobuf also requires code-generation config in the module `build.gradle.kts`:
+Protobuf also requires code-generation config in the module `build.gradle.kts`. The versions below are illustrative — resolve current ones with `versions.sh protobuf-plugin` (the plugin) and `versions.sh protobuf` (`protobuf-kotlin-lite` and `protoc`, which share a version):
 
 ```kotlin
 plugins {
