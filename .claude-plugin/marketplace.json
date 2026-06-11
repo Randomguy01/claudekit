@@ -6,6 +6,11 @@
   },
   "plugins": [
     {
+      "name": "androidx-data-store",
+      "description": "Store key-value pairs or typed objects on Android with Jetpack DataStore — Preferences, Proto, and JSON configurations, Compose and multi-process usage, and corruption handling — with task guides and per-type API references.",
+      "source": "./plugins/androidx-data-store"
+    },
+    {
       "name": "androidx-room",
       "description": "Build and maintain an Android Room persistence layer — entities, DAOs, queries, migrations, relationships, type converters, and testing — with task guides and per-type API references.",
       "source": "./plugins/androidx-room"
@@ -22,3 +27,4 @@
     }
   ]
 }
+
