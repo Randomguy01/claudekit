@@ -27,4 +27,3 @@ T get()
 ```
 
 Returns the underlying value, computing it on the first call. Every call on the same `Lazy` instance returns the same value.
-</content>

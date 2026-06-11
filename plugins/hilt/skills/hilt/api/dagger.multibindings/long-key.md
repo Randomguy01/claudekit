@@ -23,4 +23,3 @@ long value
 ```
 
 The `long` used as the map key.
-</content>

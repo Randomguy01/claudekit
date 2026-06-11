@@ -42,4 +42,3 @@ Class<?>[] replaces
 ```
 
 The [`@InstallIn`](../dagger.hilt/install-in.md) module(s) that the annotated module replaces in tests.
-</content>

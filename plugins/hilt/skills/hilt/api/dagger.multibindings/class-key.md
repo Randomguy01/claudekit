@@ -23,4 +23,3 @@ Class<?> value
 ```
 
 The `Class` used as the map key.
-</content>

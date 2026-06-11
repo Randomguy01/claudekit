@@ -23,4 +23,3 @@ public interface FooEntryPoint {
 
 Foo foo = EntryPoints.get(component, FooEntryPoint.class).getFoo();
 ```
-</content>

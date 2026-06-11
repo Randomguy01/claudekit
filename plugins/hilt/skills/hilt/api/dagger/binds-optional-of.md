@@ -37,4 +37,3 @@ Other bindings may inject any of:
 - `Optional<Provider<Lazy<Foo>>>`
 
 If a `@Nullable` binding for `Foo` exists, injecting `Optional<Foo>` is a compile-time error; the other forms remain valid because `Provider` and [`Lazy`](lazy.md) may return `null`. Explicit bindings for any of these forms conflict with a `@BindsOptionalOf` binding. Both `com.google.common.base.Optional` and `java.util.Optional` are supported.
-</content>

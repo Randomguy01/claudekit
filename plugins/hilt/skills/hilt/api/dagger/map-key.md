@@ -75,4 +75,3 @@ boolean unwrapValue default true
 ```
 
 `true` to use the value of the single member of the annotated annotation as the map key; `false` to use the annotation instance itself as the map key. When `true`, the single member may not be an array.
-</content>

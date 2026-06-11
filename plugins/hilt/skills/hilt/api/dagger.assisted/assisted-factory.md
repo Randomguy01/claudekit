@@ -17,4 +17,3 @@ An `@AssistedFactory`-annotated type must:
 
 - be an abstract class or interface.
 - declare exactly one abstract, non-`default` method whose return type exactly matches the assisted-injection type, and whose parameters match — in order — the [`@Assisted`](assisted.md) parameters of the target constructor.
-</content>

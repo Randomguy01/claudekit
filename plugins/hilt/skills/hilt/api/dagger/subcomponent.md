@@ -31,4 +31,3 @@ Class<?>[] modules default {}
 ```
 
 A list of classes annotated with [`@Module`](module.md) whose bindings are used to generate the subcomponent implementation. Through `Module.includes()` the full set of modules used may be larger than those listed here.
-</content>

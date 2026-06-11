@@ -38,4 +38,3 @@ interface MyComponent {
   }
 }
 ```
-</content>

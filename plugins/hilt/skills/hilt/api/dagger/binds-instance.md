@@ -37,4 +37,3 @@ interface Factory {
 ```
 
 Each builder method must accept a single parameter. Arguments may not be `null` unless the parameter is annotated `@Nullable`; for builders, a non-`@Nullable` instance must be set before `build()` is called. Primitives may not be marked `@Nullable`. Binding an instance is often more efficient than passing a module instance that provides it.
-</content>

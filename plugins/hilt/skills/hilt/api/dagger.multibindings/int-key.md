@@ -23,4 +23,3 @@ int value
 ```
 
 The `int` used as the map key.
-</content>

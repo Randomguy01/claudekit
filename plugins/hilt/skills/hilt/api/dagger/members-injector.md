@@ -25,4 +25,3 @@ Injects dependencies into the fields and methods of `instance`, ignoring whether
 - `instance` — the instance to inject members into.
 
 Throws `NullPointerException` if `instance` is `null`. (`injectMembers(T)` rejecting `null` was added in 2.0.)
-</content>

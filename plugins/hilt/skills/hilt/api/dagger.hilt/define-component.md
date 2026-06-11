@@ -43,4 +43,3 @@ Class<?> parent default DefineComponentNoParent.class
 ```
 
 The parent of this component, if it exists. Defaults to an internal sentinel (`DefineComponentNoParent`) that marks the component as a root with no parent.
-</content>

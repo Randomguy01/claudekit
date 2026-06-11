@@ -45,4 +45,3 @@ class MyApplication {
   dataService = dataServiceFactory.create(new Config(...));
 }
 ```
-</content>

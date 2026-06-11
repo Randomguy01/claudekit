@@ -48,4 +48,3 @@ Class<?> value default Void.class
 ```
 
 The base class for the generated Hilt class. Optional when using the Hilt Gradle plugin, where it is inferred from the current superclass.
-</content>

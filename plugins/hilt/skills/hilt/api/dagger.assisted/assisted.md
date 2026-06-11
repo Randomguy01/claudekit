@@ -43,4 +43,3 @@ String value default ""
 ```
 
 An identifier for the assisted parameter, used to disambiguate assisted parameters of the same type.
-</content>

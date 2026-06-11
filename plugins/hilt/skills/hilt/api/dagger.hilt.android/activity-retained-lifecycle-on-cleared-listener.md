@@ -20,4 +20,3 @@ void onCleared()
 ```
 
 Called when the associated retained component is being cleared. Inherited from [`RetainedLifecycle.OnClearedListener`](../dagger.hilt.android.lifecycle/retained-lifecycle-on-cleared-listener.md).
-</content>

@@ -26,4 +26,3 @@ Annotates `abstract` [`@Module`](../dagger/module.md) methods that declare multi
   }
 }
 ```
-</content>

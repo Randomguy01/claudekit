@@ -32,4 +32,3 @@ Class<?>[] value
 ```
 
 The Hilt component(s) into which the annotated module or entry point is installed. Required.
-</content>

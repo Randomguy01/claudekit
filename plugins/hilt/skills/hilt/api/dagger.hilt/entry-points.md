@@ -22,4 +22,3 @@ Returns the `entryPoint` interface from a component or component manager. This p
 
 - `component` — the Hilt-generated component; for convenience a component manager instance is also accepted.
 - `entryPoint` — the interface annotated with [`@EntryPoint`](entry-point.md). Its [`@InstallIn`](install-in.md) component should match `component`.
-</content>

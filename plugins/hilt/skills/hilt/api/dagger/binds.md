@@ -31,4 +31,3 @@ For multibindings, the parameter's assignability differs:
 - `@IntoSet` — the parameter must be assignable to the parameter of `Set.add(E)`.
 - `@ElementsIntoSet` — the parameter must be assignable to the parameter of `Set.addAll(Collection<? extends E>)`.
 - `@IntoMap` — the parameter must be assignable to the value parameter of `Map.put(K, V)`.
-</content>

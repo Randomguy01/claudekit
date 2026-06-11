@@ -32,4 +32,3 @@ Class<?>[] subcomponents default {}
 > Since 2.7 · @Beta
 
 Any [`@Subcomponent`](subcomponent.md)- or `@ProductionSubcomponent`-annotated classes which should be children of the component in which this module is installed. A subcomponent may be listed in more than one module within a single component.
-</content>

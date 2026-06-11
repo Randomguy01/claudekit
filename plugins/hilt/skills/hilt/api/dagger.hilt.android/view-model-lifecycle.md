@@ -29,4 +29,3 @@ void removeOnClearedListener(RetainedLifecycle.OnClearedListener listener)
 ```
 
 Unregisters a previously registered `listener`.
-</content>

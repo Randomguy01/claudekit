@@ -23,4 +23,3 @@ Returns the early entry point interface from the application's component manager
 
 - `applicationContext` — the application context.
 - `entryPoint` — the interface annotated with [`@EarlyEntryPoint`](early-entry-point.md); its [`@InstallIn`](../dagger.hilt/install-in.md) component should match.
-</content>

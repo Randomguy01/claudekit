@@ -115,4 +115,3 @@ Class<?>[] dependencies default {}
 ```
 
 A list of types that are to be used as component dependencies.
-</content>

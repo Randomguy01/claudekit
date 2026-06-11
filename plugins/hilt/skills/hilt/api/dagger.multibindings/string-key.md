@@ -23,4 +23,3 @@ String value
 ```
 
 The `String` used as the map key.
-</content>
