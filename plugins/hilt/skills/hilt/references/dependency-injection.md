@@ -28,6 +28,9 @@ Hilt supports the following Android classes:
 - `Service`
 - `BroadcastReceiver`
 
+> [!NOTE]
+> Hilt also supports `Fragment` and `View` (the latter via `@WithFragmentBindings`), but with a Compose-first, single-activity architecture you rarely need them, so they aren't covered in these guides. Their components and scopes are documented under `api/dagger.hilt.android.components/` and `api/dagger.hilt.android.scopes/`.
+
 In Compose, don't annotate individual composables. Annotate the root `ComponentActivity` with `@AndroidEntryPoint` — it serves as the single DI entry point for the entire UI hierarchy, so you can access Hilt-injected ViewModels directly within composable functions.
 
 > [!NOTE]
