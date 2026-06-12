@@ -6,6 +6,11 @@
   },
   "plugins": [
     {
+      "name": "android-app-architecture",
+      "description": "Design and structure Android apps using the official recommended app architecture — the UI, domain, and data layers, separation of concerns, single source of truth, unidirectional data flow, and dependency-injection boundaries — with task-oriented guides, plus autonomous layer-builder subagents that implement a layer end-to-end on top of the Room, Retrofit, DataStore, WorkManager, and Hilt skills.",
+      "source": "./plugins/android-app-architecture"
+    },
+    {
       "name": "androidx-data-store",
       "description": "Store key-value pairs or typed objects on Android with Jetpack DataStore — Preferences, Proto, and JSON configurations, Compose and multi-process usage, and corruption handling — with task guides and per-type API references.",
       "source": "./plugins/androidx-data-store"
